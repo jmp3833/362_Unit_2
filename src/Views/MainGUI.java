@@ -9,27 +9,31 @@
 
 package Views;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import Views.MenuBar;
 
 import javax.swing.*;
 
 public class MainGUI extends JFrame {
-	public MainGUI() {
-	}
 	private static final long serialVersionUID = 1L;
 	
 	//launches the main user interface window of the system.
-	public void execute(){
-	
-	//Separates the layout into components representing cardinal directions. 
-	getContentPane().setLayout(new BorderLayout(5,10));
-	setSize(600,800);
-	
-    //set constraints of the main window. 
-	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	setVisible(true);
+	public MainGUI() {
+		
+		
+		//Separates the layout into components representing cardinal directions. 
+		getContentPane().setLayout(new BorderLayout(5,10));
+		setSize(600,800);
+		
+		//Adds components to the layout
+		add(new MenuBar().barCreator(),BorderLayout.NORTH);
+		
+	    //set constraints of the main window. 
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setVisible(true);
+			
 		
 	}
+	
 
 }
