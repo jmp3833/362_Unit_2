@@ -15,13 +15,15 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class MainGUI extends JFrame {
+	public MainGUI() {
+	}
 	private static final long serialVersionUID = 1L;
 	
 	//launches the main user interface window of the system.
 	public void execute(){
 	
 	//Separates the layout into components representing cardinal directions. 
-	setLayout(new BorderLayout(5,10));
+	getContentPane().setLayout(new BorderLayout(5,10));
 	setSize(600,800);
 	
     //set constraints of the main window. 

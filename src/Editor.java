@@ -4,6 +4,9 @@
  * Editor.java is the main class which will invoke the User Interface
  */
 
+
+//this is something
+
 import Views.MainGUI;
 
 public class Editor {
