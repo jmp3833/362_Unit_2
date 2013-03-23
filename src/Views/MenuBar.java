@@ -17,7 +17,9 @@ import observers.SettingsObserver;
 import javax.swing.*;
 
 public class MenuBar {
+  boolean autoWrap;
   public MenuBar(){
+	  this.autoWrap = true; //Program begins with autoWrap on by default.
   }
   
   
@@ -26,6 +28,8 @@ public class MenuBar {
 	  final FileObserver o = new FileObserver(); //Listens to commands from the "File" menu
 	  final boolean isSaved = false; //Used for quit prompts
 	  final SettingsObserver settingsObs = new SettingsObserver();
+	  
+	  
 	  
 	  //Main menu bar at the top of the screen
 	  JMenuBar menuBar;
@@ -78,6 +82,17 @@ public class MenuBar {
 		  
 	  });
 	  textWrapping = new JMenuItem("Enable/disable text wrapping");
+	  textWrapping.addActionListener(new ActionListener(){
+
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//The users selection of whether they would like auto wrap on/off
+			boolean newSelection = settingsObs.autoWrap(isSaved); 
+			
+		}
+		  
+	  });
 	  checkPrompt = new JMenuItem("Check for HTML errors");
 	  
 	  //Populates the "File" sub menu

@@ -38,5 +38,25 @@ public class SettingsObserver {
 		 return -1;
 		 
 	}
+	
+	/**
+	 * Prompt the user if they would like to enable/keep enabled 
+	 * auto wrapping of text in the editor.
+	 * @return if text wrapping should be enabled
+	 */
+	public boolean autoWrap(boolean currentSelection) {
+	
+		int response = JOptionPane.showConfirmDialog(null, "Would you like " +
+				"text wrapping to be enabled?");
+		
+		if (response == 0){
+			return true;
+		}
+		else if (response == 1 ){
+		    return false;
+		}
+		else
+			return currentSelection;
+	}
   
 }
