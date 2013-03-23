@@ -24,6 +24,7 @@ public class MainGUI extends JFrame {
 		//Separates the layout into components representing cardinal directions. 
 		getContentPane().setLayout(new BorderLayout(5,10));
 		setSize(600,800);
+		setTitle("Simple HTML Editor");
 		
 		//Adds components to the layout
 		add(new MenuBar().barCreator(),BorderLayout.NORTH);

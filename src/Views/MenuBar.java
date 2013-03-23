@@ -9,6 +9,10 @@
 
 package Views;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import Observers.FileObserver;
+
 import javax.swing.*;
 
 public class MenuBar {
@@ -17,6 +21,9 @@ public class MenuBar {
   
   
   public JMenuBar barCreator(){
+	  
+	  final FileObserver o = new FileObserver(); //Listens to commands from the "File" menu
+	  final boolean isSaved = false; //Used for quit prompts
 	  
 	  //Main menu bar at the top of the screen
 	  JMenuBar menuBar;
@@ -37,6 +44,14 @@ public class MenuBar {
 	  //Adds menu items to their respective menu bars 
 	  save = new JMenuItem("Save");
 	  quit = new JMenuItem("Quit");
+	  quit.addActionListener(new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			o.quit(isSaved);
+		}
+		  
+	  });
 	  open = new JMenuItem("Open");
 	  newFile = new JMenuItem("New");
 	  tabSize = new JMenuItem("Edit tab size");
