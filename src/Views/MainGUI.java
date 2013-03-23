@@ -27,7 +27,7 @@ public class MainGUI extends JFrame {
 		setTitle("Simple HTML Editor");
 		
 		//Adds components to the layout
-		add(new MenuBar().barCreator(),BorderLayout.NORTH);
+		add(new MenuBar().barCreator(this),BorderLayout.NORTH);
 		
 	    //set constraints of the main window. 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

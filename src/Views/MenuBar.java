@@ -12,6 +12,7 @@ package views;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import observers.FileObserver;
+import observers.SettingsObserver;
 
 import javax.swing.*;
 
@@ -20,10 +21,11 @@ public class MenuBar {
   }
   
   
-  public JMenuBar barCreator(){
+  public JMenuBar barCreator(final JFrame parent){
 	  
 	  final FileObserver o = new FileObserver(); //Listens to commands from the "File" menu
 	  final boolean isSaved = false; //Used for quit prompts
+	  final SettingsObserver settingsObs = new SettingsObserver();
 	  
 	  //Main menu bar at the top of the screen
 	  JMenuBar menuBar;
@@ -62,7 +64,19 @@ public class MenuBar {
 	  });
 	  open = new JMenuItem("Open");
 	  newFile = new JMenuItem("New");
-	  tabSize = new JMenuItem("Edit tab size");
+	  tabSize = new JMenuItem("Edit tab length");
+	  tabSize.addActionListener(new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			//Grab the user's new desired tab length. 
+			int newTabLength = settingsObs.changeTabLength(parent);
+			//TODO: Relay this information where its needed. 
+			
+		}
+		  
+	  });
 	  textWrapping = new JMenuItem("Enable/disable text wrapping");
 	  checkPrompt = new JMenuItem("Check for HTML errors");
 	  
