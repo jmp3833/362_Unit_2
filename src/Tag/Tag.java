@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Tag;
+package tag;
 
 /**
  * This is the tag class. It is built on the TagInterface. In

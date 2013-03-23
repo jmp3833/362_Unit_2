@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Tag;
+package tag;
 
 import java.util.ArrayList;
 

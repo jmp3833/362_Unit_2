@@ -6,12 +6,12 @@
  */
 
 
-package Observers;
+package observers;
 
 import javax.swing.JOptionPane;
 
 public class FileObserver {
-
+	
   /**
    * Checks if the file has been saved, and sends a prompt to the user 
    * asking if they would like to quit upon saving. 
@@ -32,7 +32,6 @@ public class FileObserver {
 			  //System.exit(0);
 		  }
 	  }
-	  
+	  	  
   }
-
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Tag;
+package tag;
 
 /**
  * @author Eric Majchrzak

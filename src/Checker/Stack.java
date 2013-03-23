@@ -1,4 +1,4 @@
-package Checker;
+package checker;
 
 public class Stack {
 

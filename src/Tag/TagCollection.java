@@ -1,4 +1,4 @@
-package Tag;
+package tag;
 
 public class TagCollection {
 

@@ -7,11 +7,11 @@
  */
 
 
-package Views;
+package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Observers.FileObserver;
+import observers.FileObserver;
 
 import javax.swing.*;
 
@@ -43,6 +43,14 @@ public class MenuBar {
 	  
 	  //Adds menu items to their respective menu bars 
 	  save = new JMenuItem("Save");
+	  save.addActionListener(new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//:TODO implement save functionality
+		}
+		  
+	  });
 	  quit = new JMenuItem("Quit");
 	  quit.addActionListener(new ActionListener(){
 
