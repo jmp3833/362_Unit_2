@@ -24,18 +24,24 @@ public class SettingsObserver {
 		 String str = JOptionPane.showInputDialog(null, "Input desired tab length: ", 
 				 "Tab Length", 1);
 		 
-		 int tabLength = Integer.parseInt(str);
 		 
-		 if (tabLength > 0 && tabLength < 10 ){
-			 return tabLength;
-			 
-		 }
-		 else{
-			 JOptionPane.showMessageDialog(parent,"The tab length must be an\n " +
+		 try{
+			  int tabLength = Integer.parseInt(str);
+			  // is an integer!
+			  if (tabLength > 0 && tabLength < 10 ){
+					 return tabLength;
+			  }
+			  else{
+				  JOptionPane.showMessageDialog(parent,"The tab length must be an\n " +
 			 		"integer between 1 and 9.\nPlease try again.");
+			  }
+			
+		 } catch (NumberFormatException e) {
+			  // not an integer!
 		 }
-		 //If there was incorrect user input, return -1.
-		 return -1;
+		 
+		 //If there was incorrect user input, return default value.
+		 return 5;
 		 
 	}
 	
