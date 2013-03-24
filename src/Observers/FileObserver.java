@@ -6,7 +6,7 @@
  */
 
 
-package observers;
+package Observers;
 
 import javax.swing.JOptionPane;
 

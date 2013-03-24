@@ -7,12 +7,12 @@
  */
 
 
-package views;
+package Views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import observers.FileObserver;
-import observers.SettingsObserver;
+import Observers.FileObserver;
+import Observers.SettingsObserver;
 
 import javax.swing.*;
 

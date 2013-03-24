@@ -1,7 +1,7 @@
 /**
  * 
  */
-package tag;
+package Tag;
 
 import java.util.ArrayList;
 
@@ -44,7 +44,6 @@ public class CompositeTag implements TagInterface {
 	 */
 	@Override
 	public boolean compare(String toCompare) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	

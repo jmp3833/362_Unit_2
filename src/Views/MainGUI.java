@@ -7,10 +7,10 @@
  */
 
 
-package views;
+package Views;
 import java.awt.*;
 
-import views.MenuBar;
+import Views.MenuBar;
 
 import javax.swing.*;
 
