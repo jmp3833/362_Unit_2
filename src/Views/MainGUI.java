@@ -11,6 +11,7 @@ package Views;
 import java.awt.*;
 
 import Views.MenuBar;
+import Views.TextWindow;
 
 import javax.swing.*;
 
@@ -26,8 +27,12 @@ public class MainGUI extends JFrame {
 		setSize(600,800);
 		setTitle("Simple HTML Editor");
 		
+		//Create new components
+		TextTabWindow mainWindow = new TextTabWindow();
+		
 		//Adds components to the layout
-		add(new MenuBar().barCreator(this),BorderLayout.NORTH);
+		add(new MenuBar(mainWindow).barCreator(this),BorderLayout.NORTH);
+		add(mainWindow,BorderLayout.CENTER);
 		
 	    //set constraints of the main window. 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

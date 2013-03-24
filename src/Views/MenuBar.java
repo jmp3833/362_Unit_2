@@ -14,11 +14,12 @@ import java.awt.event.ActionListener;
 import Observers.FileObserver;
 import Observers.SettingsObserver;
 
+
 import javax.swing.*;
 
 public class MenuBar {
   boolean autoWrap;
-  public MenuBar(){
+  public MenuBar(TextTabWindow mainWindow){
 	  this.autoWrap = true; //Program begins with autoWrap on by default.
   }
   
