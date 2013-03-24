@@ -18,6 +18,6 @@ public class TextTabWindow extends JTabbedPane {
 	 * Constructs the JTabbedPane used to store JTextAreas
 	 */
 	public TextTabWindow(){
-		new JTabbedPane();
+		JTabbedPane jtPane = new JTabbedPane();
 	}
 }
