@@ -40,7 +40,7 @@ public class TagCollection {
 		tags.put("h6",new Tag("h6","h6"));
 		
 		//Define list Tags
-		tags.put("oi",new Tag("ol","Ordered List"));
+		tags.put("ol",new Tag("ol","Ordered List"));
 		tags.put("ul",new Tag("ul","Unordered list"));
 		tags.put("li",new Tag("li","list item"));
 		tags.put("dl",new Tag("dl","Definition List"));
