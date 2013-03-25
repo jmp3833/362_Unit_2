@@ -15,13 +15,15 @@ import java.util.ArrayList;
 public class CompositeTag implements TagInterface {
 	
 	ArrayList<TagInterface> tags;
+	String name;
 	
 	/**
 	 * Constructor for the composite tag, just initializes the
 	 * ArrayList.
 	 */
-	public CompositeTag(){
+	public CompositeTag(String myName){
 		tags = new ArrayList<TagInterface>();
+		name = myName;
 	}
 
 	/* (non-Javadoc)
@@ -72,6 +74,15 @@ public class CompositeTag implements TagInterface {
 	@Override
 	public String getOpening() {
 		return(this.print());
+	}
+
+	/**
+	 * This is the get name function. It will return the name of the tag
+	 * for the menu bar to show.
+	 */
+	@Override
+	public String getName() {
+		return name;
 	}
 
 }

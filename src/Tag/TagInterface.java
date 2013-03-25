@@ -36,5 +36,11 @@ public interface TagInterface {
 	 * @return String (Opening tag)
 	 */
 	String getOpening();
+	
+	/**
+	 * This is the get name function. It will return the name of the tag
+	 * for the menu bar to show.
+	 */
+	String getName();
 
 }

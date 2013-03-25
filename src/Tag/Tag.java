@@ -12,9 +12,10 @@ package Tag;
  */
 public class Tag implements TagInterface {
 	
-	//Tag opening and closing
+	//Tag opening and closing and menu bar name
 	String opening;
 	String closing;
+	String name;
 	
 	/**
 	 * This function will take in a tag name and create a tag object
@@ -22,10 +23,11 @@ public class Tag implements TagInterface {
 	 * name plus an end tag ("/")
 	 * @param String name
 	 */
-	public Tag(String name){
+	public Tag(String tagName, String menuName){
 		String temp = "/";
-		opening = name;
-		closing = temp + name;
+		opening = tagName;
+		closing = temp + tagName;
+		name = menuName;
 	}
 
 	/* (non-Javadoc)
@@ -55,7 +57,6 @@ public class Tag implements TagInterface {
 	 * This is a basic function used to return the opening tag.
 	 * @return String (Opening tag)
 	 */
-
 	public String getOpening() {
 		return "<" + opening + ">\n";
 	}
@@ -68,4 +69,20 @@ public class Tag implements TagInterface {
 		return "<" + closing + ">\n";
 	}
 
+	/**
+	 * This is the get name function. It will return the name of the tag
+	 * for the menu bar to show.
+	 */
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Insert tag method used by the menu bar to insert a tag into the text
+	 * @return String
+	 */
+	public String insertTag(){
+		return opening + closing + "\n";
+	}
 }

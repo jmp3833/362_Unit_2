@@ -3,6 +3,8 @@
  */
 package Tag;
 
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Hashtable;
 
 /**
@@ -20,34 +22,69 @@ public class TagCollection {
 	
 	public TagCollection(){
 		
-		//Make the new hashtable
+		//Make the new hash table
 		tags = new Hashtable<String, Tag>();
 		
 		//Add Emphasis Tags
-		tags.put("Bold",new Tag("b"));
-		tags.put("Italics",new Tag("i"));
+		tags.put("b",new Tag("b","Bold"));		//Bold
+		tags.put("i",new Tag("i","Italics"));		//Italics
 		
 		//Add Header tags
-		tags.put("Header",new Tag("header"));
-		tags.put("h1",new Tag("h1"));
-		tags.put("h2",new Tag("h2"));
-		tags.put("h3",new Tag("h3"));
-		tags.put("h4",new Tag("h4"));
-		tags.put("h5",new Tag("h5"));
-		tags.put("h6",new Tag("h6"));
+		tags.put("header",new Tag("header","Header"));
+		tags.put("h1",new Tag("h1","h1"));
+		tags.put("h2",new Tag("h2","h2"));
+		tags.put("h3",new Tag("h3","h3"));
+		tags.put("h4",new Tag("h4","h4"));
+		tags.put("h5",new Tag("h5","h5"));
+		tags.put("h6",new Tag("h6","h6"));
 		
 		//Define list Tags
-		tags.put("Ordered List",new Tag("ol"));
-		tags.put("Unordered List",new Tag("ul"));
-		tags.put("List Item",new Tag("li"));
-		tags.put("Defenition List",new Tag("dl"));
-		tags.put("Defenition List Item",new Tag("dt"));
-		tags.put("Defenition List Item Description",new Tag("dd"));
+		tags.put("oi",new Tag("ol","Ordered List"));
+		tags.put("ul",new Tag("ul","Unordered list"));
+		tags.put("li",new Tag("li","list item"));
+		tags.put("dl",new Tag("dl","Definition List"));
+		tags.put("dt",new Tag("dt","Definition List Item"));
+		tags.put("dd",new Tag("dd","Definition List Item Description"));
 		
 		//Tables
-		tags.put("Table",new Tag("table"));
-		tags.put("Table Row",new Tag("tr"));
-		tags.put("Table Cell",new Tag("td"));
+		tags.put("table",new Tag("table","Table"));
+		tags.put("tr",new Tag("tr","Table Row"));
+		tags.put("td",new Tag("td","Table cell"));
+	}
+	
+	/**
+	 * This is the getNames method used by the menu bar to populate a list of insert
+	 * commands for the menu bar.
+	 * @return ArrayList<String>
+	 */
+	public ArrayList<String> getNames(){
+		ArrayList<String> names = new ArrayList<String>();
+		for (Enumeration<Tag> temp = tags.elements(); temp.hasMoreElements();) 
+			names.add(temp.nextElement().getName());
+		return names;
+	}
+	
+	/**
+	 * This is the get tag function. This function will get a tag from the hash
+	 * and give the text to be inserted to the menu bar
+	 * @return String
+	 */
+	public String getTag(String tagName){
+		for (Enumeration<Tag> temp = tags.elements(); temp.hasMoreElements();){
+			Tag current = temp.nextElement();
+			if(current.getName() == tagName){
+				return current.insertTag();
+			}
+		}
+		return null;	
 	}
 
+	/**
+	 * This is the checkTag function. It will take text in and see if it is a valid
+	 * tag in the tag collection.
+	 * @return boolean
+	 */
+	public boolean checkTag(String tagToCheck){
+		return tags.containsKey(tagToCheck);
+	}
 }
