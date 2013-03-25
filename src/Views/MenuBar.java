@@ -115,6 +115,7 @@ public class MenuBar {
 		   */
 		  public void actionPerformed(ActionEvent arg0) {
 				String stringToCheck = tabProxy.getTextFromTabWindow(mainWindow);
+				System.out.println(stringToCheck);
 				System.out.println(activeTextBuffer.validate(stringToCheck, tags));
 			}
 			  

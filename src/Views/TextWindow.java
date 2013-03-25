@@ -16,7 +16,7 @@ import javax.swing.JTextPane;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
-public class TextWindow extends JPanel{
+public class TextWindow extends JTextPane{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -26,13 +26,10 @@ public class TextWindow extends JPanel{
 	 */
 	public TextWindow(String windowName, TextTabWindow tabWindow){
 		setLayout(new BorderLayout(5,10));
-		JTextPane HTMLText = new JTextPane();
-		HTMLText.setEditorKit(new HTMLEditorKit());
-		HTMLDocument doc = new HTMLDocument();
-		HTMLText.setStyledDocument(doc);
-		
-		
-		add(HTMLText,BorderLayout.CENTER);
+		new JTextPane();
+		//setEditorKit(new HTMLEditorKit());
+		//HTMLDocument doc = new HTMLDocument();
+		//setStyledDocument(doc);
 		
 		tabWindow.addTab(windowName, this);
 		setVisible(true);

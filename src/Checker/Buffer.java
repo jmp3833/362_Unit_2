@@ -12,7 +12,7 @@ import Tag.TagCollection;
 public class Buffer {
 	
 	//stack of tags
-	Stack<String> theStack;
+	Stack<String> theStack = new Stack<String>();
 	
 	/**
 	 * This is the main method of the buffer that reads through the text and identifies all

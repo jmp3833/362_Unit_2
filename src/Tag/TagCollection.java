@@ -33,6 +33,7 @@ public class TagCollection {
 		tags.put("header",new Tag("header","Header"));
 		tags.put("h1",new Tag("h1","h1"));
 		tags.put("h2",new Tag("h2","h2"));
+		tags.put("html",new Tag("html","html"));
 		tags.put("h3",new Tag("h3","h3"));
 		tags.put("h4",new Tag("h4","h4"));
 		tags.put("h5",new Tag("h5","h5"));
