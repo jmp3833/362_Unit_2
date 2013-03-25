@@ -30,6 +30,7 @@ public class MainGUI extends JFrame {
 		//Create new components
 		TextTabWindow mainWindow = new TextTabWindow();
 		TextWindow testWindow1 = new TextWindow("test1",mainWindow);
+		TextWindow testWindow2 = new TextWindow("test2",mainWindow);
 		
 		//Adds components to the layout
 		add(new MenuBar(mainWindow).barCreator(this),BorderLayout.NORTH);

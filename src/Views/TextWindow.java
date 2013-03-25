@@ -13,6 +13,12 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.StyledDocument;
+import javax.swing.text.html.HTML;
+import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
 
 public class TextWindow extends JPanel{
 	
@@ -24,7 +30,12 @@ public class TextWindow extends JPanel{
 	 */
 	public TextWindow(String windowName, TextTabWindow tabWindow){
 		setLayout(new BorderLayout(5,10));
-		JTextArea HTMLText = new JTextArea();
+		JTextPane HTMLText = new JTextPane();
+		HTMLText.setEditorKit(new HTMLEditorKit());
+		HTMLDocument doc = new HTMLDocument();
+		HTMLText.setStyledDocument(doc);
+		
+		
 		add(HTMLText,BorderLayout.CENTER);
 		
 		tabWindow.addTab(windowName, this);

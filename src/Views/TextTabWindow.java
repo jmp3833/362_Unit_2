@@ -18,6 +18,8 @@ public class TextTabWindow extends JTabbedPane {
 	 * Constructs the JTabbedPane used to store JTextAreas
 	 */
 	public TextTabWindow(){
-		JTabbedPane jtPane = new JTabbedPane();
+		new JTabbedPane();
+		setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		setTabPlacement(JTabbedPane.BOTTOM);
 	}
 }
