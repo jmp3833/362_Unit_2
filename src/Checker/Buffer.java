@@ -56,6 +56,7 @@ public class Buffer {
 				
 				//no longer in a tag
 				inTag = false;
+				temp = "";
 			}
 			
 			//If in a tag and not end append character to temp
