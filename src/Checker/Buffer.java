@@ -1,8 +1,6 @@
 package Checker;
 
 import java.util.Stack;
-
-import Tag.Tag;
 import Tag.TagCollection;
 
 /**

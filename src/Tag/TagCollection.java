@@ -26,8 +26,8 @@ public class TagCollection {
 		tags = new Hashtable<String, Tag>();
 		
 		//Add Emphasis Tags
-		tags.put("b",new Tag("b","Bold"));		//Bold
-		tags.put("i",new Tag("i","Italics"));		//Italics
+		tags.put("b",new Tag("b","Bold"));
+		tags.put("i",new Tag("i","Italics"));
 		
 		//Add Header tags
 		tags.put("header",new Tag("header","Header"));
@@ -66,7 +66,7 @@ public class TagCollection {
 	
 	/**
 	 * This is the get tag function. This function will get a tag from the hash
-	 * and give the text to be inserted to the menu bar
+	 * and return the text to be inserted
 	 * @return String
 	 */
 	public String getTag(String tagName){
