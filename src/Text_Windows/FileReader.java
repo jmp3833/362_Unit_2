@@ -8,7 +8,7 @@
 
 package Text_Windows;
 
-import javax.swing.JTextPane;
+import javax.swing.JTextArea;
 import Views.TextTabWindow;
 
 public class FileReader {
@@ -19,21 +19,21 @@ public class FileReader {
      */
 	public String getTextFromTabWindow(TextTabWindow mainWindow){
 		//Grab the active text area 
-		JTextPane activeTextPane = (JTextPane) mainWindow.getSelectedComponent();
-		//pull the text out of the TextPane, then return it
-		String activeText = activeTextPane.getText();
+		JTextArea activeTextArea = (JTextArea) mainWindow.getSelectedComponent();
+		//pull the text out of the TextArea, then return it
+		String activeText = activeTextArea.getText();
 		return activeText;
 	}
 	
 	/**
-	 * grabs the TextPane component from the active tab, then returns it. 
+	 * grabs the TextArea component from the active tab, then returns it. 
 	 * @param mainWindow the main textTabWindow of the editor
-	 * @return the TextPane that is currently selected in the editor
+	 * @return the TextArea that is currently selected in the editor
 	 */
-	public JTextPane getSelectedTextPane(TextTabWindow mainWindow){
+	public JTextArea getSelectedTextArea(TextTabWindow mainWindow){
 		//Grab the active text area 
-		JTextPane activeTextPane = (JTextPane) mainWindow.getSelectedComponent();
-		return activeTextPane;
+		JTextArea activeTextArea = (JTextArea) mainWindow.getSelectedComponent();
+		return activeTextArea;
 	}
 
 }
