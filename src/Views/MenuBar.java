@@ -13,14 +13,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Observers.FileObserver;
 import Observers.SettingsObserver;
+import Tag.TagCollection;
+import Text_Windows.FileReader;
+import Checker.Buffer;
 
 
 import javax.swing.*;
 
 public class MenuBar {
   boolean autoWrap;
+  FileReader tabProxy; //Grabs active window text
+  TextTabWindow mainWindow;
+  Buffer activeTextBuffer = new Buffer(); //buffer to check & store active text
+  TagCollection tags;
   public MenuBar(TextTabWindow mainWindow){
 	  this.autoWrap = true; //Program begins with autoWrap on by default.
+	  this.tabProxy = new FileReader(); //FileReader proxy instantiated here
+	  this.mainWindow = mainWindow;//Gets the textTabWindow passed from MainGUI
+	  this.activeTextBuffer = new Buffer();//Buffer gets instantiated here. 
+	  this.tags = new TagCollection(); //Instantiates a new TagCollection here
   }
   
   
@@ -95,6 +106,20 @@ public class MenuBar {
 		  
 	  });
 	  checkPrompt = new JMenuItem("Check for HTML errors");
+	  
+	  checkPrompt.addActionListener(new ActionListener(){
+
+		  /**
+		   * Grabs the text from the active tab window, then runs the 
+		   * Buffer's validation method on that text.
+		   */
+		  public void actionPerformed(ActionEvent arg0) {
+				String stringToCheck = tabProxy.getTextFromTabWindow(mainWindow);
+				System.out.println(activeTextBuffer.validate(stringToCheck, tags));
+			}
+			  
+		  });
+	  
 	  
 	  //Populates the "File" sub menu
 	  file.add(newFile);
