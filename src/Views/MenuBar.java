@@ -1,5 +1,5 @@
 /**
- * @author: Justin Peterson
+ * @author: Justin Peterson, Dan Hernandez
  * @email: Jmp3833@rit.edu
  * MenuBar.java creates the main Menu Bar that is on the top of the main window.
  * This bar contains functions to open,close, and create files, as well as to
@@ -12,6 +12,7 @@ package Views;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Observers.FileObserver;
+import Observers.InsertObserver;
 import Observers.SettingsObserver;
 import Tag.TagCollection;
 import Text_Windows.FileReader;
@@ -25,12 +26,17 @@ public class MenuBar {
   FileReader tabProxy; //Grabs active window text
   TextTabWindow mainWindow;
   Buffer activeTextBuffer = new Buffer(); //buffer to check & store active text
+  
+  FileObserver o;
+  InsertObserver i;
+  SettingsObserver s;
+  
   TagCollection tags;
+  
   Command saveCommand ;
   Command createCommand ;
   Command loadCommand ;
-  Command copyCommand ;
-  Command pasteCommand ;
+  Command quitCommand ;
   CommandInvoker invoker; 
   
   public MenuBar(TextTabWindow mainWindow){
@@ -39,22 +45,24 @@ public class MenuBar {
 	  this.mainWindow = mainWindow;//Gets the textTabWindow passed from MainGUI
 	  this.activeTextBuffer = new Buffer();//Buffer gets instantiated here. 
 	  this.tags = new TagCollection(); //Instantiates a new TagCollection here
-      this.saveCommand = new SaveCommand(tabProxy) ;
- 	  this.createCommand = new CreateCommand(tabProxy) ;
- 	  this.loadCommand = new LoadCommand(tabProxy) ;
-	  this.copyCommand = new CopyCommand(mainWindow) ;
-  	  this.pasteCommand = new PasteCommand(mainWindow) ;
+	  
+	  this.o = new FileObserver();
+	  this.s = new SettingsObserver();
+	  this.i = new InsertObserver();
+	  
+	  
+      this.saveCommand = new SaveCommand(o) ;
+ 	  this.createCommand = new CreateCommand(o) ;
+ 	  this.loadCommand = new LoadCommand(o) ;
+ 	  this.quitCommand = new QuitCommand(o) ;
+ 	  
 
   }
   
   
   public JMenuBar barCreator(final JFrame parent){
 	  
-	  final FileObserver o = new FileObserver(); //Listens to commands from the "File" menu
-	  final boolean isSaved = false; //Used for quit prompts
-	  final SettingsObserver settingsObs = new SettingsObserver();
-	  
-	  
+	  final boolean isSaved = false; //Used for quit prompts  
 	  
 	  //Main menu bar at the top of the screen
 	  JMenuBar menuBar;
@@ -88,7 +96,16 @@ public class MenuBar {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			o.quit(isSaved);
+			
+			int response = JOptionPane.showConfirmDialog(null, "WARNING: Would you like \nto quit without saving?");
+			if (response == 0){ //Quit without saving 
+				invoker.invokeCommand(quitCommand);
+			}
+			else if (response == 1){ //Save, then exit. 
+				invoker.invokeCommand(saveCommand);
+				invoker.invokeCommand(quitCommand);
+			}
+			
 		}
 		  
 	  });
@@ -97,7 +114,7 @@ public class MenuBar {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//Command Pattern Used
-			invoke.invokeCommand(loadCommand) ;
+			invoker.invokeCommand(loadCommand) ;
 		}
 	  });
 	  newFile = new JMenuItem("New");
@@ -105,7 +122,7 @@ public class MenuBar {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 			//Command Pattern Used 
-                        invoke.invokeCommand(createCommand) ;
+                        invoker.invokeCommand(createCommand) ;
                 }
           });
 
@@ -116,7 +133,7 @@ public class MenuBar {
 		public void actionPerformed(ActionEvent e) {
 			
 			//Grab the user's new desired tab length. 
-			int newTabLength = settingsObs.changeTabLength(parent);
+			int newTabLength = s.changeTabLength(parent);
 			//TODO: Relay this information where its needed. 
 			
 		}
@@ -129,7 +146,7 @@ public class MenuBar {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//The users selection of whether they would like auto wrap on/off
-			boolean newSelection = settingsObs.autoWrap(isSaved); 
+			boolean newSelection = s.autoWrap(isSaved); 
 			
 		}
 		  

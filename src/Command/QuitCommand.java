@@ -1,6 +1,8 @@
 
 package Command;
 
+import Observers.FileObserver;
+
 public class QuitCommand implements Command{
 
         private FileObserver fileObserver ;

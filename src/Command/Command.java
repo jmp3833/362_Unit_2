@@ -2,6 +2,6 @@ package Command;
 
 public interface Command{
 
-public void execute(Receiver receiver) ;
+public void execute();
 
 }

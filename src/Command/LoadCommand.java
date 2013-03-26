@@ -1,5 +1,7 @@
 package Command;
 
+import Observers.FileObserver;
+
 public class LoadCommand implements Command{
 
 	private FileObserver fileObserver ;

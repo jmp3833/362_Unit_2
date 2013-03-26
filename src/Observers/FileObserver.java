@@ -19,41 +19,29 @@ public class FileObserver implements Receiver{
    * Checks if the file has been saved, and sends a prompt to the user 
    * asking if they would like to quit upon saving. 
    */
-  public void quit(boolean isSaved ){
-	  if(isSaved){
-		  System.exit(0);
-	  }
-	  else{
-		  int response = JOptionPane.showConfirmDialog(null, "WARNING: Would you like \nto quit without saving?");
-		  
-		  
-		  if(response == 0){ //Quit without saving
-			  System.exit(0); 
-		  }
-		  else{
-			  //TODO: open the save dialog, then quit
-			  //System.exit(0);
-		  }
-	  }
-	  	  
+  public void quit(){
+	  System.exit(0);
   }
-  
+	  
   /**
    * 
    * @param paren: the parent frame that the open box will be based from.
    * @return the text of the selected HTML file.
    */
-  public String load(JFrame parent){
+   
+  public String load(){
 	  
 	  JFileChooser fc = new JFileChooser();
 	  //Shows an open prompt for a user to select a desired HTML file
-	  int returnVal = fc.showOpenDialog(parent);
+	  int returnVal = fc.showOpenDialog(null);
 	  
 	  //Grab the selected file 
 	  if(returnVal == JFileChooser.APPROVE_OPTION) {
 	       //System.out.println("You chose to open this file: " +
 	           //TODO fc.getSelectedFile();
 	  }
+	  
+	  return "";
 	  
 	  
   }

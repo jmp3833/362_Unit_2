@@ -6,7 +6,7 @@ public class CommandInvoker{
 
 	public void invokeCommand(Command newCommand){
 		aCommand = newCommand ; 
-		aCommand.execute() ;
+		aCommand.execute();
 
 	}
 

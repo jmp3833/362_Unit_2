@@ -1,6 +1,8 @@
 
 package Command;
 
+import Observers.FileObserver;
+
 public class SaveCommand implements Command{
 
         private FileObserver fileObserver ;
@@ -13,7 +15,7 @@ public class SaveCommand implements Command{
 
         public void execute(){
 
-                fileObserver.load() ;
+                fileObserver.save() ;
 
         }
 
