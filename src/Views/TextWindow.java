@@ -38,6 +38,9 @@ public class TextWindow extends JTextArea{
 		//change the tab size; default is 8
 		setTabSize(8);
 		
+		//opens the right-click menu
+		addMouseListener(new RightClickMenu(this));
+		
 		tabWindow.addTab(windowName, this);
 		setVisible(true);
 	}

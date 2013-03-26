@@ -1,6 +1,5 @@
 /**
- * @author: Justin Peterson
- * @email: Jmp3833@rit.edu
+ * @author: Alex Bogart, Justin Peterson
  * TextTabWindow.java represents the Swing tab layout which stores 
  * individual JTextAreas. 
  */
