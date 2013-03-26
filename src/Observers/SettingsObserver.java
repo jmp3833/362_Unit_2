@@ -11,8 +11,9 @@ package Observers;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import Command.Receiver ;
 
-public class SettingsObserver {
+public class SettingsObserver implements Receiver{
 	
 	/**
 	 * Requests a change in tab length via Integer input from the user

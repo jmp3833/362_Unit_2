@@ -8,7 +8,9 @@
 
 package Observers;
 
-public class InsertObserver {
+import Command.Receiver ;
+
+public class InsertObserver implements Receiver{
 
 	public void insert(String tag){
 		

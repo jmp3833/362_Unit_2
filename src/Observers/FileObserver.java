@@ -11,8 +11,9 @@ package Observers;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import Command.Receiver ;
 
-public class FileObserver {
+public class FileObserver implements Receiver{
 	
   /**
    * Checks if the file has been saved, and sends a prompt to the user 

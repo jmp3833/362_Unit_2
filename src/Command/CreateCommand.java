@@ -1,17 +1,17 @@
 package Command;
 
-public class Create implements Command{
+public class CreateCommand implements Command{
 
-	private FileReader fileReader ; 	
+	private FileObserver fileObserver ; 	
 
-	public Create(FileReader newFileReader){
+	public CreateCommand(FileObserver newFileObserver){
 		
-		fileReader = newFileReader ;
+		fileObserver = newFileObserver ;
 
 	}
 	public void execute(){
 
-		fileReader.create() ;
+		fileObserver.create() ;
 
 	}
 

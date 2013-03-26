@@ -1,17 +1,19 @@
+
 package Command;
 
-public class Save implements Command{
+public class SaveCommand implements Command{
 
-	FileReader = fileReader ;
+        private FileObserver fileObserver ;
 
-	public Save(FileReader newFileReader){
-	
-		fileReader = newFileReader ;
+        public SaveCommand(FileObserver newFileObserver){
 
-	}
+                fileObserver = newFileObserver ;
+
+        }
+
         public void execute(){
 
-		fileReader.save() ;
+                fileObserver.load() ;
 
         }
 

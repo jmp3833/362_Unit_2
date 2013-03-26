@@ -1,18 +1,18 @@
 package Command;
 
-public class Load implements Command{
+public class LoadCommand implements Command{
 
-	private FileReader fileReader ;
+	private FileObserver fileObserver ;
 	
-	public Load(FileReader newFileReader){
+	public LoadCommand(FileObserver newFileObserver){
 
-		fileReader = newFileReader ; 
+		fileObserver = newFileObserver ; 
 
 	}
 
         public void execute(){
 
-		fileReader.load() ;
+		fileObserver.load() ;
 
         }
 

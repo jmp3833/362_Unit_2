@@ -1,3 +1,5 @@
-public class SetTabLenCommand {
+package Command ;
+
+public class SetTabLenCommand implements Command{
 
 }
