@@ -46,6 +46,8 @@ public class MenuBar {
 	  this.activeTextBuffer = new Buffer();//Buffer gets instantiated here. 
 	  this.tags = new TagCollection(); //Instantiates a new TagCollection here
 	  
+	  invoker = new CommandInvoker();
+	  
 	  this.o = new FileObserver();
 	  this.s = new SettingsObserver();
 	  this.i = new InsertObserver();
@@ -100,6 +102,7 @@ public class MenuBar {
 			int response = JOptionPane.showConfirmDialog(null, "WARNING: Would you like \nto quit without saving?");
 			if (response == 0){ //Quit without saving 
 				invoker.invokeCommand(quitCommand);
+				
 			}
 			else if (response == 1){ //Save, then exit. 
 				invoker.invokeCommand(saveCommand);

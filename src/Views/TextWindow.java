@@ -8,6 +8,7 @@
 
 package Views;
 
+import Tag.TagCollection;
 import Views.TextTabWindow;
 import java.awt.BorderLayout;
 
@@ -25,7 +26,7 @@ public class TextWindow extends JTextArea{
 	 * Constructs an individual window to add to the TextTabWindow. 
 	 * @param tabWindow - the main TextTabWindow of the editor. 
 	 */
-	public TextWindow(String windowName, TextTabWindow tabWindow){
+	public TextWindow(String windowName, TextTabWindow tabWindow, TagCollection tabs){
 		setLayout(new BorderLayout(5,10));
 		new JTextArea();
 		
@@ -39,7 +40,8 @@ public class TextWindow extends JTextArea{
 		setTabSize(8);
 		
 		//opens the right-click menu
-		//addMouseListener(new RightClickMenu(this));
+		addMouseListener(new RightClickMenu(this));
+		
 		
 		tabWindow.addTab(windowName, this);
 		setVisible(true);
