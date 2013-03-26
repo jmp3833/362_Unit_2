@@ -16,7 +16,7 @@ import Observers.SettingsObserver;
 import Tag.TagCollection;
 import Text_Windows.FileReader;
 import Checker.Buffer;
-
+import Command.*;
 
 import javax.swing.*;
 
@@ -26,12 +26,25 @@ public class MenuBar {
   TextTabWindow mainWindow;
   Buffer activeTextBuffer = new Buffer(); //buffer to check & store active text
   TagCollection tags;
+  Command saveCommand ;
+  Command createCommand ;
+  Command loadCommand ;
+  Command copyCommand ;
+  Command pasteCommand ;
+  CommandInvoker invoker; 
+  
   public MenuBar(TextTabWindow mainWindow){
 	  this.autoWrap = true; //Program begins with autoWrap on by default.
 	  this.tabProxy = new FileReader(); //FileReader proxy instantiated here
 	  this.mainWindow = mainWindow;//Gets the textTabWindow passed from MainGUI
 	  this.activeTextBuffer = new Buffer();//Buffer gets instantiated here. 
 	  this.tags = new TagCollection(); //Instantiates a new TagCollection here
+      this.saveCommand = new SaveCommand(tabProxy) ;
+ 	  this.createCommand = new CreateCommand(tabProxy) ;
+ 	  this.loadCommand = new LoadCommand(tabProxy) ;
+	  this.copyCommand = new CopyCommand(mainWindow) ;
+  	  this.pasteCommand = new PasteCommand(mainWindow) ;
+
   }
   
   
@@ -65,7 +78,8 @@ public class MenuBar {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//:TODO implement save functionality
+			//Command Pattern Implementation
+			invoker.invokeCommand(saveCommand) ;
 		}
 		  
 	  });
@@ -79,7 +93,22 @@ public class MenuBar {
 		  
 	  });
 	  open = new JMenuItem("Open");
+          open.addActionListener(new ActionListener(){
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//Command Pattern Used
+			invoke.invokeCommand(loadCommand) ;
+		}
+	  });
 	  newFile = new JMenuItem("New");
+	  newFile.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+			//Command Pattern Used 
+                        invoke.invokeCommand(createCommand) ;
+                }
+          });
+
 	  tabSize = new JMenuItem("Edit tab length");
 	  tabSize.addActionListener(new ActionListener(){
 
