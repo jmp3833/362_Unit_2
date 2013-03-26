@@ -42,7 +42,7 @@ public class FileObserver {
    * @param paren: the parent frame that the open box will be based from.
    * @return the text of the selected HTML file.
    */
-  public String open(JFrame parent){
+  public String load(JFrame parent){
 	  
 	  JFileChooser fc = new JFileChooser();
 	  //Shows an open prompt for a user to select a desired HTML file
@@ -50,10 +50,18 @@ public class FileObserver {
 	  
 	  //Grab the selected file 
 	  if(returnVal == JFileChooser.APPROVE_OPTION) {
-	       System.out.println("You chose to open this file: " +
-	            fc.getSelectedFile().getName());
+	       //System.out.println("You chose to open this file: " +
+	           //TODO fc.getSelectedFile();
 	  }
 	  
+	  
+  }
+  
+  public void create(){
+	  
+  }
+  
+  public void save(){
 	  
   }
 }

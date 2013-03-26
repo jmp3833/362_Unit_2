@@ -10,4 +10,8 @@ package Observers;
 
 public class InsertObserver {
 
+	public void insert(String tag){
+		
+	}
+	
 }
