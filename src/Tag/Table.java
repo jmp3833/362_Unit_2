@@ -4,7 +4,9 @@
 package Tag;
 
 /**
- * @author Eric
+ * This class represents a table in html. It is solely used to make 
+ * table creation simple on our end.
+ * @author Eric Majchrzak
  *
  */
 public class Table implements TagInterface {
