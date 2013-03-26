@@ -16,6 +16,7 @@ public class Tag implements TagInterface {
 	String opening;
 	String closing;
 	String name;
+	String type;
 	
 	/**
 	 * This function will take in a tag name and create a tag object
@@ -23,11 +24,12 @@ public class Tag implements TagInterface {
 	 * name plus an end tag ("/")
 	 * @param String name
 	 */
-	public Tag(String tagName, String menuName){
+	public Tag(String tagName, String menuName, String myType){
 		String temp = "/";
 		opening = tagName;
 		closing = temp + tagName;
 		name = menuName;
+		type = myType;
 	}
 
 	/* (non-Javadoc)
@@ -84,5 +86,13 @@ public class Tag implements TagInterface {
 	 */
 	public String insertTag(){
 		return opening + closing + "\n";
+	}
+	
+	/**
+	 * Insert tag method used by the menu bar to insert a tag into the text
+	 * @return String
+	 */
+	public boolean isType(String testType){
+		return type.equals(testType);
 	}
 }

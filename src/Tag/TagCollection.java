@@ -26,42 +26,69 @@ public class TagCollection {
 		tags = new Hashtable<String, Tag>();
 		
 		//Add Emphasis Tags
-		tags.put("b",new Tag("b","Bold"));
-		tags.put("i",new Tag("i","Italics"));
+		tags.put("b",new Tag("b","Bold","Emphasis"));
+		tags.put("i",new Tag("i","Italics","Emphasis"));
+		tags.put("i",new Tag("p","Paragraph","Emphasis"));
 		
 		//Add Header tags
-		tags.put("header",new Tag("header","Header"));
-		tags.put("h1",new Tag("h1","h1"));
-		tags.put("h2",new Tag("h2","h2"));
-		tags.put("html",new Tag("html","html"));
-		tags.put("h3",new Tag("h3","h3"));
-		tags.put("h4",new Tag("h4","h4"));
-		tags.put("h5",new Tag("h5","h5"));
-		tags.put("h6",new Tag("h6","h6"));
+		tags.put("header",new Tag("header","Header","Headers"));
+		tags.put("h1",new Tag("h1","h1","Headers"));
+		tags.put("h2",new Tag("h2","h2","Headers"));
+		tags.put("h3",new Tag("h3","h3","Headers"));
+		tags.put("h4",new Tag("h4","h4","Headers"));
+		tags.put("h5",new Tag("h5","h5","Headers"));
+		tags.put("h6",new Tag("h6","h6","Headers"));
+		tags.put("html",new Tag("html","html","Headers"));
 		
 		//Define list Tags
-		tags.put("ol",new Tag("ol","Ordered List"));
-		tags.put("ul",new Tag("ul","Unordered list"));
-		tags.put("li",new Tag("li","list item"));
-		tags.put("dl",new Tag("dl","Definition List"));
-		tags.put("dt",new Tag("dt","Definition List Item"));
-		tags.put("dd",new Tag("dd","Definition List Item Description"));
+		tags.put("ol",new Tag("ol","Ordered List","Lists"));
+		tags.put("ul",new Tag("ul","Unordered list","Lists"));
+		tags.put("li",new Tag("li","list item","Lists"));
+		tags.put("dl",new Tag("dl","Definition List","Lists"));
+		tags.put("dt",new Tag("dt","Definition List Item","Lists"));
+		tags.put("dd",new Tag("dd","Definition List Item Description","Lists"));
 		
 		//Tables
-		tags.put("table",new Tag("table","Table"));
-		tags.put("tr",new Tag("tr","Table Row"));
-		tags.put("td",new Tag("td","Table cell"));
+		tags.put("table",new Tag("table","Table","Tables"));
+		tags.put("tr",new Tag("tr","Table Row","Tables"));
+		tags.put("td",new Tag("td","Table cell","Tables"));
 	}
 	
 	/**
 	 * This is the getNames method used by the menu bar to populate a list of insert
-	 * commands for the menu bar.
-	 * @return ArrayList<String>
+	 * commands for the menu bar. Returns an ArrayList of ArrayLists of Strings wit 
+	 * the first String in each array being the category of the tag.
+	 * @return ArrayList<ArrayList<String>>
 	 */
-	public ArrayList<String> getNames(){
-		ArrayList<String> names = new ArrayList<String>();
-		for (Enumeration<Tag> temp = tags.elements(); temp.hasMoreElements();) 
-			names.add(temp.nextElement().getName());
+	public ArrayList<ArrayList<String>> getNames(){
+		ArrayList<String> emphasis = new ArrayList<String>();
+		emphasis.add("Emphasis");
+		ArrayList<String> headers = new ArrayList<String>();
+		headers.add("Headers");
+		ArrayList<String> lists = new ArrayList<String>();
+		lists.add("Lists");
+		ArrayList<String> tables = new ArrayList<String>();
+		tables.add("Tables");
+		
+		ArrayList<ArrayList<String>> names = new ArrayList<ArrayList<String>>();
+		
+		//Sort by type
+		for(Enumeration<Tag> temp = tags.elements(); temp.hasMoreElements();){
+			Tag thisTag = temp.nextElement();
+			if(thisTag.isType("Emphasis")){
+				emphasis.add(thisTag.getName());
+			} else if(thisTag.isType("Headers")){
+				headers.add(thisTag.getName());
+			} else if(thisTag.isType("Lists")){
+				lists.add(thisTag.getName());
+			} else if(thisTag.isType("Tables")){
+				tables.add(thisTag.getName());
+			}
+		}
+		names.add(emphasis);
+		names.add(headers);
+		names.add(lists);
+		names.add(tables);
 		return names;
 	}
 	
