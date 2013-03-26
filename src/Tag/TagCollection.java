@@ -88,4 +88,14 @@ public class TagCollection {
 	public boolean checkTag(String tagToCheck){
 		return tags.containsKey(tagToCheck);
 	}
+	
+	/**
+	 * This is the make table function. It will make a table for the user to insert into the html window.
+	 * It takes in the number of rows, columns and the tag size. It will return a string representation of
+	 * the table in html.
+	 * @return String
+	 */
+	public String makeTable(int rows, int columns, int tabLength){
+		return new Table(rows,columns,tabLength).print();
+	}
 }
