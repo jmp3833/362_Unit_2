@@ -8,7 +8,6 @@
 
 
 package Views;
-package Command ;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +16,7 @@ import Observers.SettingsObserver;
 import Tag.TagCollection;
 import Text_Windows.FileReader;
 import Checker.Buffer;
-
+import Command.*;
 
 import javax.swing.*;
 
@@ -40,7 +39,7 @@ public class MenuBar {
 	  this.mainWindow = mainWindow;//Gets the textTabWindow passed from MainGUI
 	  this.activeTextBuffer = new Buffer();//Buffer gets instantiated here. 
 	  this.tags = new TagCollection(); //Instantiates a new TagCollection here
-          this.saveCommand = new SaveCommand(tabProxy) ;
+      this.saveCommand = new SaveCommand(tabProxy) ;
  	  this.createCommand = new CreateCommand(tabProxy) ;
  	  this.loadCommand = new LoadCommand(tabProxy) ;
 	  this.copyCommand = new CopyCommand(mainWindow) ;

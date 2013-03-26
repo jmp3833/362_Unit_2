@@ -8,6 +8,8 @@
 
 package Observers;
 
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class FileObserver {
@@ -33,5 +35,25 @@ public class FileObserver {
 		  }
 	  }
 	  	  
+  }
+  
+  /**
+   * 
+   * @param paren: the parent frame that the open box will be based from.
+   * @return the text of the selected HTML file.
+   */
+  public String open(JFrame parent){
+	  
+	  JFileChooser fc = new JFileChooser();
+	  //Shows an open prompt for a user to select a desired HTML file
+	  int returnVal = fc.showOpenDialog(parent);
+	  
+	  //Grab the selected file 
+	  if(returnVal == JFileChooser.APPROVE_OPTION) {
+	       System.out.println("You chose to open this file: " +
+	            fc.getSelectedFile().getName());
+	  }
+	  
+	  
   }
 }
