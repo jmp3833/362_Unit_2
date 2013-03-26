@@ -94,7 +94,7 @@ public class Table implements TagInterface {
 		String temp = tab + "<tr>\n";
 		
 		for(int i=0;i<col;i++){
-			temp = temp + tab + "<tc></tc>\n";
+			temp = temp + tab + tab + "<tc></tc>\n";
 		}
 		
 		return temp + tab + "</tr>\n";
