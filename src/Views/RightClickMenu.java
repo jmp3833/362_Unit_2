@@ -60,8 +60,11 @@ public class RightClickMenu extends MouseAdapter{
        
         menu.add(insert);
         JMenuItem cut = new JMenuItem(new DefaultEditorKit.CutAction());
+        cut.setText("Cut");
         JMenuItem copy = new JMenuItem(new DefaultEditorKit.CopyAction());
+        copy.setText("Copy");
         JMenuItem paste = new JMenuItem(new DefaultEditorKit.PasteAction());
+        paste.setText("Paste");
         menu.add(cut);
         menu.add(copy);
         menu.add(paste);
