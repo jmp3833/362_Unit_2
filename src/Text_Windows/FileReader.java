@@ -20,7 +20,7 @@ public class FileReader {
      */
 	public String getTextFromTabWindow(TextTabWindow mainWindow){
 		//Grab the active text area 
-		JTextArea activeTextArea = (JTextArea) mainWindow.getSelectedComponent();
+		JTextArea activeTextArea = getSelectedTextArea(mainWindow);
 		//pull the text out of the TextArea, then return it
 		String activeText = activeTextArea.getText();
 		return activeText;
