@@ -33,6 +33,7 @@ public class RightClickMenu extends MouseAdapter{
         JMenu insert = new JMenu("Insert");
         ArrayList<JMenuItem> tags = new ArrayList<JMenuItem>();
         
+        //get the list of tabs
         for (ArrayList<String> al : tabs.getNames()){
         	int i = 0;
         	JMenu category = new JMenu();
@@ -51,13 +52,7 @@ public class RightClickMenu extends MouseAdapter{
         	}
         }
         
-        
-        
-        
-   
-        
-    
-       
+        //insert the different menu options
         menu.add(insert);
         JMenuItem cut = new JMenuItem(new DefaultEditorKit.CutAction());
         cut.setText("Cut");
@@ -68,7 +63,6 @@ public class RightClickMenu extends MouseAdapter{
         menu.add(cut);
         menu.add(copy);
         menu.add(paste);
-        
         
         this.tw = tw;
         this.menu = menu;
@@ -97,6 +91,7 @@ public class RightClickMenu extends MouseAdapter{
     		//inserts the tag at the caret's position
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//moves the caret to inbetween the cursors
 				int pos = tw.getCaretPosition();
 				int displacement = str.length()/2;
 				

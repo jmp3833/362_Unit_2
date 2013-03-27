@@ -103,11 +103,12 @@ public class FileObserver implements Receiver{
 	  //Grab the selected file 
 	  if(returnVal == JFileChooser.APPROVE_OPTION) {
 		  
-		  File file = fc.getSelectedFile();
+		  //File file = fc.getSelectedFile();
+		  String fileName = fc.getSelectedFile().toString();
 		  String textToSave = fr.getTextFromTabWindow(windows);
 		  
 		  try{
-			  String fileName = file.getName();
+			  //String fileName = file.getName();
 			  FileWriter out = new FileWriter(fileName);
 	          out.write(textToSave);
 	          out.close();

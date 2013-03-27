@@ -1,5 +1,5 @@
 /**
- * @author: Justin Peterson
+ * @author: Justin Peterson, Alex Bogart
  * @email: Jmp3833@rit.edu
  * SettingsObserver.java Will listen to invoked commands from the settings
  * portion of the menu bar. These functionalities have been grouped
