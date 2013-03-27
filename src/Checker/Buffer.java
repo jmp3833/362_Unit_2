@@ -12,7 +12,7 @@ import Tag.TagCollection;
 public class Buffer {
 	
 	//stack of tags
-	Stack<String> theStack = new Stack<String>();
+	Stack<String> theStack;
 	
 	/**
 	 * This is the main method of the buffer that reads through the text and identifies all
@@ -25,6 +25,7 @@ public class Buffer {
 		boolean inTag = false;
 		String temp = "";
 		int lineNum = 1;
+		theStack = new Stack<String>();
 		
 		//loop through the text
 		for(int i = 0; i<textArray.length;i++){
