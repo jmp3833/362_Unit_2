@@ -8,8 +8,11 @@
 
 package Observers;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
@@ -27,9 +30,11 @@ import Command.Receiver ;
 public class FileObserver implements Receiver{
 	
 	TextTabWindow windows;
+	FileReader fr;
 	
-	public FileObserver(TextTabWindow windows){
+	public FileObserver(TextTabWindow windows, FileReader fr){
 		this.windows = windows;
+		this.fr = fr;
 
 	}
 	
@@ -79,10 +84,46 @@ public class FileObserver implements Receiver{
   }
   
   public void create(){
+	  String fileName = JOptionPane.showInputDialog(null, "Enter Filename: ", 
+				"Enter desired name of your file: ", 1);
+	  TagCollection t = new TagCollection();
+	  FileWriter writer;
+	  try {
+		  writer = new FileWriter(fileName);
+		  TextWindow newWindow = new TextWindow(fileName,
+	    		  windows,t);
+		  
+	  } catch (IOException e) {
+		  // TODO Auto-generated catch block
+		  e.printStackTrace();
+	  }
 	  
   }
   
+  /**
+   * Write changes in the JTextArea to a file. 
+   */
   public void save(){
+	  
+	  JFileChooser fc = new JFileChooser();
+	  //Shows an open prompt for a user to select a desired HTML file
+	  int returnVal = fc.showSaveDialog(null);
+	  
+	  //Grab the selected file 
+	  if(returnVal == JFileChooser.APPROVE_OPTION) {
+		  
+		  File file = fc.getSelectedFile();
+		  String textToSave = fr.getTextFromTabWindow(windows);
+		  
+		  try{
+			  String fileName = file.getName();
+			  FileWriter out = new FileWriter(fileName);
+	          out.write(textToSave);
+	          out.close();
+		  }catch(Exception e){
+			  //do nothing for now
+		  }
+	  }
 	  
   }
 }

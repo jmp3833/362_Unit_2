@@ -56,7 +56,7 @@ public class MenuBar {
 	  
 	  invoker = new CommandInvoker();
 	  
-	  this.o = new FileObserver(mainWindow);
+	  this.o = new FileObserver(mainWindow,tabProxy);
 	  this.s = new SettingsObserver(tabProxy, mainWindow);
 	  this.c = new CheckObserver(mainWindow,activeTextBuffer,tags);
 	  this.i = new InsertObserver(tabProxy, mainWindow);
@@ -118,13 +118,14 @@ public class MenuBar {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			int response = JOptionPane.showConfirmDialog(null, "WARNING: Would you like \nto quit without saving?");
-			if (response == 0){ //Quit without saving 
+			int response = JOptionPane.showConfirmDialog(null, "WARNING: " +
+					"Would you like \nto save before quitting?");
+			if (response == 0){ //Quit and save 
+				invoker.invokeCommand(saveCommand);
 				invoker.invokeCommand(quitCommand);
 				
 			}
 			else if (response == 1){ //Save, then exit. 
-				invoker.invokeCommand(saveCommand);
 				invoker.invokeCommand(quitCommand);
 			}
 			
