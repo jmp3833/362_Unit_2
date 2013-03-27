@@ -1,7 +1,6 @@
-package Checker;
+package Tag;
 
 import java.util.Stack;
-import Tag.TagCollection;
 
 /**
  * This is the buffer, it reads through the text from one of the windows and

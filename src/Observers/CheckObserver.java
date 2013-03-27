@@ -9,7 +9,7 @@
 package Observers;
 import javax.swing.JOptionPane;
 
-import Checker.Buffer;
+import Tag.Buffer;
 import Tag.TagCollection;
 import Text_Windows.FileReader;
 import Views.TextTabWindow;

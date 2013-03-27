@@ -25,7 +25,7 @@ public class MainGUI extends JFrame {
 		
 		//Separates the layout into components representing cardinal directions. 
 		getContentPane().setLayout(new BorderLayout(5,10));
-		setSize(600,800);
+		setSize(600,750);
 		setTitle("Simple HTML Editor");
 		
 		//Create new components
@@ -38,7 +38,6 @@ public class MainGUI extends JFrame {
 	    //set constraints of the main window. 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
-			
 		
 	}
 	

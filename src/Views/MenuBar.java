@@ -16,9 +16,9 @@ import Observers.CheckObserver;
 import Observers.FileObserver;
 import Observers.InsertObserver;
 import Observers.SettingsObserver;
+import Tag.Buffer;
 import Tag.TagCollection;
 import Text_Windows.FileReader;
-import Checker.Buffer;
 import Command.*;
 
 import javax.swing.*;
