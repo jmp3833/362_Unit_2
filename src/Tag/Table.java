@@ -45,7 +45,7 @@ public class Table implements TagInterface {
 		String temp = "<table>\n";
 		
 		for(int i=0;i<rows;i++){
-			printRow(columns);
+			temp = temp + printRow(columns);
 		}
 		
 		return temp + "</table>\n";
