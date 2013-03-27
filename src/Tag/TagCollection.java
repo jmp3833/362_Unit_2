@@ -28,7 +28,7 @@ public class TagCollection {
 		//Add Emphasis Tags
 		tags.put("b",new Tag("b","Bold","Emphasis"));
 		tags.put("i",new Tag("i","Italics","Emphasis"));
-		tags.put("i",new Tag("p","Paragraph","Emphasis"));
+		tags.put("p",new Tag("p","Paragraph","Emphasis"));
 		
 		//Add Header tags
 		tags.put("header",new Tag("header","Header","Headers"));
