@@ -11,15 +11,25 @@ package Observers;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import Text_Windows.FileReader;
+import Views.TextTabWindow;
 import Command.Receiver ;
 
 public class SettingsObserver implements Receiver{
 	
+	FileReader fr;
+	TextTabWindow mainWindow;
+	
+	public SettingsObserver(FileReader tabProxy, TextTabWindow mainWindow) {
+		this.fr = tabProxy;
+		this.mainWindow = mainWindow;
+	}
+	
 	/**
 	 * Requests a change in tab length via Integer input from the user
-	 * @return the desired tab length, or -1 if there was incorrect input. 
 	 */
-	public int changeTabLength(){
+	public void changeTabLength(){
 		
 		 //Opens a dialog box for the user to select tab length. 
 		 String str = JOptionPane.showInputDialog(null, "Input desired tab length: ", 
@@ -30,7 +40,7 @@ public class SettingsObserver implements Receiver{
 			  int tabLength = Integer.parseInt(str);
 			  // is an integer!
 			  if (tabLength > 0 && tabLength < 10 ){
-					 return tabLength;
+					fr.getSelectedTextArea(mainWindow).setTabSize(tabLength);
 			  }
 			  else{
 				  JOptionPane.showMessageDialog(null,"The tab length must be an\n " +
@@ -41,22 +51,21 @@ public class SettingsObserver implements Receiver{
 			  // not an integer!
 		 }
 		 
-		 //If there was incorrect user input, return default value.
-		 return 5;
+		 
 		 
 	}
 	/**
 	 * Enables text wrapping in the HTML editor.
 	 */
 	public void enableTextWrapping(){
-		//TODO: Alex put your stuff here
+		fr.getSelectedTextArea(mainWindow).setLineWrap(true);
 	}
 	
 	/**
 	 * Disables text wrapping in the HTML editor.
 	 */
 	public void disableTextWrapping(){
-		//TODO: Alex put your stuff here
+		fr.getSelectedTextArea(mainWindow).setLineWrap(false);
 	}
   
 }

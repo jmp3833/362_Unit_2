@@ -57,7 +57,7 @@ public class MenuBar {
 	  invoker = new CommandInvoker();
 	  
 	  this.o = new FileObserver(mainWindow);
-	  this.s = new SettingsObserver();
+	  this.s = new SettingsObserver(tabProxy, mainWindow);
 	  this.c = new CheckObserver(mainWindow,activeTextBuffer,tags);
 	  this.i = new InsertObserver(tabProxy.getSelectedTextArea(mainWindow));
 	  
