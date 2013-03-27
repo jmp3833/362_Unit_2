@@ -13,8 +13,10 @@ import Views.TextTabWindow;
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
@@ -42,6 +44,10 @@ public class TextWindow extends JTextArea{
 		//opens the right-click menu
 		addMouseListener(new RightClickMenu(this, tabs));
 		
+		//places text area inside a scrolling pane
+		JScrollPane scrollPane = new JScrollPane(this);
+		scrollPane.setBounds(10,60,780,500);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
 		tabWindow.addTab(windowName, this);
 		setVisible(true);

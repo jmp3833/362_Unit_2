@@ -8,6 +8,7 @@
 
 package Text_Windows;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import Views.TextTabWindow;
 
@@ -32,8 +33,13 @@ public class FileReader {
 	 */
 	public JTextArea getSelectedTextArea(TextTabWindow mainWindow){
 		//Grab the active text area 
-		JTextArea activeTextArea = (JTextArea) mainWindow.getSelectedComponent();
-		return activeTextArea;
+		JScrollPane jsp = (JScrollPane) mainWindow.getSelectedComponent();
+		if (jsp != null){
+			JTextArea activeTextArea = (JTextArea) jsp.getViewport().getView();
+			return activeTextArea;
+		}
+		else
+			return null;
 	}
 
 }
