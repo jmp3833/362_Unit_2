@@ -49,7 +49,7 @@ public class TextWindow extends JTextArea{
 		scrollPane.setBounds(10,60,780,500);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
-		tabWindow.addTab(windowName, this);
+		tabWindow.addTab(windowName, scrollPane);
 		setVisible(true);
 	}
 
