@@ -5,6 +5,7 @@
  */
 
 package Views;
+import java.awt.MenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.text.DefaultEditorKit;
 
 import Tag.TagCollection;
 
@@ -57,6 +59,13 @@ public class RightClickMenu extends MouseAdapter{
     
        
         menu.add(insert);
+        JMenuItem cut = new JMenuItem(new DefaultEditorKit.CutAction());
+        JMenuItem copy = new JMenuItem(new DefaultEditorKit.CopyAction());
+        JMenuItem paste = new JMenuItem(new DefaultEditorKit.PasteAction());
+        menu.add(cut);
+        menu.add(copy);
+        menu.add(paste);
+        
         
         this.tw = tw;
         this.menu = menu;
