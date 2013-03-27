@@ -59,7 +59,7 @@ public class MenuBar {
 	  this.o = new FileObserver(mainWindow);
 	  this.s = new SettingsObserver(tabProxy, mainWindow);
 	  this.c = new CheckObserver(mainWindow,activeTextBuffer,tags);
-	  this.i = new InsertObserver(tabProxy.getSelectedTextArea(mainWindow));
+	  this.i = new InsertObserver(tabProxy, mainWindow);
 	  
 	  //File commands
       this.saveCommand = new SaveCommand(o) ;
