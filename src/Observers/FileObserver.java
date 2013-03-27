@@ -106,9 +106,9 @@ public class FileObserver implements Receiver{
   public void save(){
 	  
 	  JFileChooser fc = new JFileChooser();
+	
 	  //Shows an open prompt for a user to select a desired HTML file
 	  int returnVal = fc.showSaveDialog(null);
-	  
 	  //Grab the selected file 
 	  if(returnVal == JFileChooser.APPROVE_OPTION) {
 		  
