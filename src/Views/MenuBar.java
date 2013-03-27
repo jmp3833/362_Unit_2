@@ -37,6 +37,7 @@ public class MenuBar {
   Command createCommand ;
   Command loadCommand ;
   Command quitCommand ;
+  Command changeTabLengthCommand ;
   CommandInvoker invoker; 
   
   public MenuBar(TextTabWindow mainWindow){
@@ -57,6 +58,7 @@ public class MenuBar {
  	  this.createCommand = new CreateCommand(o) ;
  	  this.loadCommand = new LoadCommand(o) ;
  	  this.quitCommand = new QuitCommand(o) ;
+ 	  this.changeTabLengthCommand = new ChangeTabLengthCommand(s);
  	  
 
   }
@@ -134,11 +136,7 @@ public class MenuBar {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			//Grab the user's new desired tab length. 
-			int newTabLength = s.changeTabLength(parent);
-			//TODO: Relay this information where its needed. 
-			
+			invoker.invokeCommand(changeTabLengthCommand); 
 		}
 		  
 	  });

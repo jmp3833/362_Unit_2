@@ -19,7 +19,7 @@ public class SettingsObserver implements Receiver{
 	 * Requests a change in tab length via Integer input from the user
 	 * @return the desired tab length, or -1 if there was incorrect input. 
 	 */
-	public int changeTabLength(JFrame parent){
+	public int changeTabLength(){
 		
 		 //Opens a dialog box for the user to select tab length. 
 		 String str = JOptionPane.showInputDialog(null, "Input desired tab length: ", 
@@ -33,7 +33,7 @@ public class SettingsObserver implements Receiver{
 					 return tabLength;
 			  }
 			  else{
-				  JOptionPane.showMessageDialog(parent,"The tab length must be an\n " +
+				  JOptionPane.showMessageDialog(null,"The tab length must be an\n " +
 			 		"integer between 1 and 9.\nPlease try again.");
 			  }
 			
