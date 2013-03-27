@@ -24,9 +24,15 @@ public class Buffer {
 		char[] textArray = text.toCharArray();
 		boolean inTag = false;
 		String temp = "";
+		int lineNum = 1;
 		
 		//loop through the text
 		for(int i = 0; i<textArray.length;i++){
+			
+			//If newline
+			if(textArray[i] == '\n'){
+				lineNum++;
+			}
 			
 			//If character is the end of a tag
 			if(inTag == true && textArray[i] == '>'){
@@ -38,17 +44,20 @@ public class Buffer {
 				if(tempArray[0] == '/'){
 					//pop / of string
 					temp = temp.substring(1);
+					if(theStack.empty()){
+						return "</" + temp + "> on line " + lineNum + " has no start tag.";
+					}
 					//pop off of stack and compare tags
 					if(!(theStack.pop().equals(temp))){
 						//give invalid tag name
-						return "</" + temp + "> may be spelled incorrectly or in the wrong place";
+						return "</" + temp + "> on line " + lineNum + " may be spelled incorrectly or in the wrong place";
 					}
 					
 				//if not an end tag
 				} else {
 					//Check to see if the tag is valid
 					if(!tags.checkTag(temp)){
-						return "<" + temp + "> is an invalid tag";
+						return "<" + temp + "> on line " + lineNum + " is an invalid tag";
 					}
 					//If valid push onto the stack
 					theStack.push(temp);
