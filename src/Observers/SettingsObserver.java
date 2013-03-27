@@ -45,25 +45,18 @@ public class SettingsObserver implements Receiver{
 		 return 5;
 		 
 	}
+	/**
+	 * Enables text wrapping in the HTML editor.
+	 */
+	public void enableTextWrapping(){
+		//TODO: Alex put your stuff here
+	}
 	
 	/**
-	 * Prompt the user if they would like to enable/keep enabled 
-	 * auto wrapping of text in the editor.
-	 * @return if text wrapping should be enabled
+	 * Disables text wrapping in the HTML editor.
 	 */
-	public boolean autoWrap(boolean currentSelection) {
-	
-		int response = JOptionPane.showConfirmDialog(null, "Would you like " +
-				"text wrapping to be enabled?");
-		
-		if (response == 0){
-			return true;
-		}
-		else if (response == 1 ){
-		    return false;
-		}
-		else
-			return currentSelection;
+	public void disableTextWrapping(){
+		//TODO: Alex put your stuff here
 	}
   
 }

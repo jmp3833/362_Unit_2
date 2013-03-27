@@ -11,6 +11,8 @@ package Views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import Observers.CheckObserver;
 import Observers.FileObserver;
 import Observers.InsertObserver;
 import Observers.SettingsObserver;
@@ -30,6 +32,7 @@ public class MenuBar {
   FileObserver o;
   InsertObserver i;
   SettingsObserver s;
+  CheckObserver c;
   
   TagCollection tags;
   
@@ -38,6 +41,9 @@ public class MenuBar {
   Command loadCommand ;
   Command quitCommand ;
   Command changeTabLengthCommand ;
+  Command enableTextWrapCommand ;
+  Command disableTextWrapCommand ;
+  Command checkCommand;
   CommandInvoker invoker; 
   
   public MenuBar(TextTabWindow mainWindow){
@@ -52,14 +58,23 @@ public class MenuBar {
 	  this.o = new FileObserver();
 	  this.s = new SettingsObserver();
 	  this.i = new InsertObserver();
+	  this.c = new CheckObserver(mainWindow,activeTextBuffer,tags);
 	  
-	  
+	  //File commands
       this.saveCommand = new SaveCommand(o) ;
  	  this.createCommand = new CreateCommand(o) ;
  	  this.loadCommand = new LoadCommand(o) ;
  	  this.quitCommand = new QuitCommand(o) ;
- 	  this.changeTabLengthCommand = new ChangeTabLengthCommand(s);
  	  
+ 	  //Settings commands 
+ 	  this.changeTabLengthCommand = new ChangeTabLengthCommand(s);
+ 	  this.enableTextWrapCommand = new EnableTextWrapCommand(s);
+ 	  this.disableTextWrapCommand = new DisableTextWrapCommand(s);
+ 	  
+ 	  //Insert commands 
+ 	  
+ 	  //Checker command(s)
+ 	  this.checkCommand = new CheckCommand(c);
 
   }
   
@@ -146,8 +161,17 @@ public class MenuBar {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//The users selection of whether they would like auto wrap on/off
-			boolean newSelection = s.autoWrap(isSaved); 
+			int response = JOptionPane.showConfirmDialog(null, "Would you like " +
+					"text wrapping to be enabled?");
+			
+			if (response == 0){
+				invoker.invokeCommand(enableTextWrapCommand);
+			}
+			else if (response == 1 ){
+				invoker.invokeCommand(disableTextWrapCommand);
+			}
+			
+			//Else, do nothing. 
 			
 		}
 		  
@@ -161,9 +185,7 @@ public class MenuBar {
 		   * Buffer's validation method on that text.
 		   */
 		  public void actionPerformed(ActionEvent arg0) {
-				String stringToCheck = tabProxy.getTextFromTabWindow(mainWindow);
-				System.out.println(stringToCheck);
-				System.out.println(activeTextBuffer.validate(stringToCheck, tags));
+				invoker.invokeCommand(checkCommand);
 			}
 			  
 		  });
