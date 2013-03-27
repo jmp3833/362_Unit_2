@@ -15,6 +15,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import Tag.TagCollection;
+
 
 
 public class RightClickMenu extends MouseAdapter{
@@ -22,21 +24,37 @@ public class RightClickMenu extends MouseAdapter{
 	TextWindow tw;
 	JPopupMenu menu;
 	
-	public RightClickMenu(TextWindow tw) {
+	public RightClickMenu(TextWindow tw, TagCollection tabs) {
 		
 		//initialize the menu
 		JPopupMenu menu = new JPopupMenu();
         JMenu insert = new JMenu("Insert");
         ArrayList<JMenuItem> tags = new ArrayList<JMenuItem>();
-        JMenuItem h1Open = new JMenuItem("<h1>");
-        tags.add(h1Open);
-        JMenuItem h1End = new JMenuItem("</h1>");
-        tags.add(h1End);
         
-        for (JMenuItem i : tags){
-        	i.addActionListener(makeInsertListener());
-        	insert.add(i);
+        for (ArrayList<String> al : tabs.getNames()){
+        	int i = 0;
+        	JMenu category = new JMenu();
+        	insert.add(category);
+        	for (String str : al){
+        		if (i == 0){
+        			category.setText(str);
+        			i++;
+        		} 
+        		else {
+        			JMenuItem tag = new JMenuItem(str);
+        			tag.addActionListener(makeInsertListener(tabs.getTag(str)));
+        			category.add(tag);
+        		}
+        			
+        	}
         }
+        
+        
+        
+        
+   
+        
+    
        
         menu.add(insert);
         
@@ -61,13 +79,18 @@ public class RightClickMenu extends MouseAdapter{
     
    
     //create the listener to add to the insert menu items
-    ActionListener makeInsertListener(){
+    ActionListener makeInsertListener(final String str){
     	ActionListener insertAction = new ActionListener(){
 
     		//inserts the tag at the caret's position
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tw.insert(e.getActionCommand(), tw.getCaretPosition());
+				int pos = tw.getCaretPosition();
+				int displacement = str.length()/2;
+				
+				tw.insert(str, pos);
+				tw.setCaretPosition(pos+displacement);
+				
 			}
     		
     	};

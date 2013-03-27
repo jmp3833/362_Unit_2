@@ -68,6 +68,8 @@ public class FileObserver implements Receiver{
 		    	newWindow.append(reader.nextLine());
 		    	newWindow.append("\n");
 		    	
+		    	newWindow.requestFocusInWindow();
+		    	
 		    }
 	      } catch (FileNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "File not found!");

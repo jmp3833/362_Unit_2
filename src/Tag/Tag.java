@@ -85,7 +85,7 @@ public class Tag implements TagInterface {
 	 * @return String
 	 */
 	public String insertTag(){
-		return opening + closing + "\n";
+		return "<" + opening +"><"+ closing + ">";
 	}
 	
 	/**
