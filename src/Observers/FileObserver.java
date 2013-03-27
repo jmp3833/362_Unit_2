@@ -8,12 +8,30 @@
 
 package Observers;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+
+import Tag.TagCollection;
+import Text_Windows.FileReader;
+import Views.TextTabWindow;
+import Views.TextWindow;
+
 import Command.Receiver ;
 
 public class FileObserver implements Receiver{
+	
+	TextTabWindow windows;
+	
+	public FileObserver(TextTabWindow windows){
+		this.windows = windows;
+
+	}
 	
   /**
    * Checks if the file has been saved, and sends a prompt to the user 
@@ -29,7 +47,7 @@ public class FileObserver implements Receiver{
    * @return the text of the selected HTML file.
    */
    
-  public String load(){
+  public void load(){
 	  
 	  JFileChooser fc = new JFileChooser();
 	  //Shows an open prompt for a user to select a desired HTML file
@@ -37,12 +55,24 @@ public class FileObserver implements Receiver{
 	  
 	  //Grab the selected file 
 	  if(returnVal == JFileChooser.APPROVE_OPTION) {
-	       //System.out.println("You chose to open this file: " +
-	           //TODO fc.getSelectedFile();
+		  
+		  
+	      File file = fc.getSelectedFile();
+	      TagCollection t = new TagCollection();
+	    		  
+	      TextWindow newWindow = new TextWindow(file.getName(),
+	    		  windows,t);
+	      try {
+			Scanner reader = new Scanner(file);
+		    while(reader.hasNextLine()){
+		    	newWindow.append(reader.nextLine());
+		    	newWindow.append("\n");
+		    	
+		    }
+	      } catch (FileNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "File not found!");
+		}
 	  }
-	  
-	  return "";
-	  
 	  
   }
   

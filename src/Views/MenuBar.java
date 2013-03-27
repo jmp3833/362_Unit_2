@@ -56,7 +56,7 @@ public class MenuBar {
 	  
 	  invoker = new CommandInvoker();
 	  
-	  this.o = new FileObserver();
+	  this.o = new FileObserver(mainWindow);
 	  this.s = new SettingsObserver();
 	  this.c = new CheckObserver(mainWindow,activeTextBuffer,tags);
 	  this.i = new InsertObserver(tabProxy.getSelectedTextArea(mainWindow));
@@ -160,7 +160,7 @@ public class MenuBar {
 		  
 	  });
 	  
-	  
+	   
 	  tabSize = new JMenuItem("Edit tab length");
 	  tabSize.addActionListener(new ActionListener(){
 

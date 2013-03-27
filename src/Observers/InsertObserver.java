@@ -36,10 +36,6 @@ public class InsertObserver implements Receiver{
 		int numCols = Integer.parseInt(cols);
 		int tabSize = activeWindow.getTabSize();
 		
-		System.out.println("Rows:" + numRows + "\n Cols: " +
-				"" + numCols + "\n Tab Size: " + tabSize );
-		
-		
 		Table t = new Table(numRows,numCols,tabSize);
 		activeWindow.append(t.print());
 	}
