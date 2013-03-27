@@ -30,9 +30,9 @@ public class MenuBar {
   Buffer activeTextBuffer = new Buffer(); //buffer to check & store active text
   
   FileObserver o;
-  InsertObserver i;
   SettingsObserver s;
   CheckObserver c;
+  InsertObserver i;
   
   TagCollection tags;
   
@@ -44,6 +44,7 @@ public class MenuBar {
   Command enableTextWrapCommand ;
   Command disableTextWrapCommand ;
   Command checkCommand;
+  Command InsertTableCommand ;
   CommandInvoker invoker; 
   
   public MenuBar(TextTabWindow mainWindow){
@@ -57,8 +58,8 @@ public class MenuBar {
 	  
 	  this.o = new FileObserver();
 	  this.s = new SettingsObserver();
-	  this.i = new InsertObserver();
 	  this.c = new CheckObserver(mainWindow,activeTextBuffer,tags);
+	  this.i = new InsertObserver(tabProxy.getSelectedTextArea(mainWindow));
 	  
 	  //File commands
       this.saveCommand = new SaveCommand(o) ;
@@ -72,6 +73,7 @@ public class MenuBar {
  	  this.disableTextWrapCommand = new DisableTextWrapCommand(s);
  	  
  	  //Insert commands 
+ 	  this.InsertTableCommand = new InsertTableCommand(i);
  	  
  	  //Checker command(s)
  	  this.checkCommand = new CheckCommand(c);
@@ -80,24 +82,24 @@ public class MenuBar {
   
   
   public JMenuBar barCreator(final JFrame parent){
-	  
-	  final boolean isSaved = false; //Used for quit prompts  
-	  
+
 	  //Main menu bar at the top of the screen
 	  JMenuBar menuBar;
 	  //Main menus that an be accessed from the menu bar
-	  JMenu file, settings, check;
+	  JMenu file, settings, check, insert;
 	  //Items that can be selected through menus
-	  JMenuItem save, quit, open, tabSize, textWrapping, newFile,checkPrompt;
+	  JMenuItem save, quit, open, tabSize, textWrapping, newFile,
+	  checkPrompt, insertTagTable;
 	  
 	  //Creates each menu of the menubar
 	  menuBar = new JMenuBar();
 	  file = new JMenu("File");
-	  /*
-	   * edit = new JMenu("Edit");
-	   */
+	  
+	  //edit = new JMenu("Edit");
+	  insert = new JMenu("Insert");
 	  settings = new JMenu("Settings");
 	  check = new JMenu("Check");
+	  
 	  
 	  //Adds menu items to their respective menu bars 
 	  save = new JMenuItem("Save");
@@ -146,6 +148,19 @@ public class MenuBar {
                 }
           });
 
+	  
+	  insertTagTable = new JMenuItem("Insert Table");
+	  insertTagTable.addActionListener(new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			invoker.invokeCommand(InsertTableCommand);
+			
+		}
+		  
+	  });
+	  
+	  
 	  tabSize = new JMenuItem("Edit tab length");
 	  tabSize.addActionListener(new ActionListener(){
 
@@ -204,6 +219,9 @@ public class MenuBar {
 	  //Populates the "Check" sub menu
 	  check.add(checkPrompt);
 	  
+	  //Populates the "Insert" sub menu 
+	  insert.add(insertTagTable);
+	  
 	  //Adds the menus to the bar
 	  menuBar.add(file);
 	  /*
@@ -211,6 +229,7 @@ public class MenuBar {
 	   *  menuBar.add(edit);
 	   */
 	  menuBar.add(settings);
+	  menuBar.add(insert);
 	  menuBar.add(check);
 	  
 	  return menuBar;
