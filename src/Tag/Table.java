@@ -19,7 +19,7 @@ public class Table implements TagInterface {
 	String name = "Custom Table";
 	
 	//the tab
-	String tab = "";
+	String tab;
 	
 	/**
 	 * Constructor. Takes in the number of columns, number of rows, 
@@ -29,9 +29,10 @@ public class Table implements TagInterface {
 	public Table(int numRows, int numCols, int tabSize){
 		rows = numRows;
 		columns = numCols;
+		tab = "";
 		
 		//make a tab String for easy use.
-		for(int i = 0; i > tabSize; i++){
+		for(int i = 0; i < tabSize; i++){
 			tab = tab + " ";
 		}
 	}
