@@ -9,7 +9,6 @@
 
 package Observers;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import Text_Windows.FileReader;
