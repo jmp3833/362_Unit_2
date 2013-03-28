@@ -17,7 +17,9 @@ import javax.swing.*;
 public class MainGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
-	//launches the main user interface window of the system.
+	/**
+	 * launches the main user interface window of the system.
+	 */
 	public MainGUI() {
 		
 		

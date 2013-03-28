@@ -1,5 +1,5 @@
 /**
- * @author: Justin Peterson
+ * @author: Justin Peterson, Alex Bogart
  * @email: Jmp3833@rit.edu
  * FileObserver.java listens for all actions that are selected in the "File"
  * sub menu of the MenuBar
@@ -19,6 +19,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Tag.TagCollection;
 import Text_Windows.FileReader;
@@ -55,6 +56,8 @@ public class FileObserver implements Receiver{
   public void load(){
 	  
 	  JFileChooser fc = new JFileChooser();
+	  FileNameExtensionFilter filter = new FileNameExtensionFilter("HTM & HTML", "htm", "html");
+	  fc.setFileFilter(filter);
 	  //Shows an open prompt for a user to select a desired HTML file
 	  int returnVal = fc.showOpenDialog(null);
 	  
@@ -63,6 +66,7 @@ public class FileObserver implements Receiver{
 		  
 		  
 	      File file = fc.getSelectedFile();
+	     
 	      TagCollection t = new TagCollection();
 	    		  
 	      TextWindow newWindow = new TextWindow(file.getName(),
@@ -97,7 +101,8 @@ public class FileObserver implements Receiver{
   public void save(){
 	  
 	  JFileChooser fc = new JFileChooser();
-	
+	  FileNameExtensionFilter htmFilter = new FileNameExtensionFilter("HTM & HTML", "htm", "html");
+	  fc.setFileFilter(htmFilter);
 	  //Shows an open prompt for a user to select a desired HTML file
 	  int returnVal = fc.showSaveDialog(null);
 	  //Grab the selected file 
@@ -105,6 +110,13 @@ public class FileObserver implements Receiver{
 		  
 		  //File file = fc.getSelectedFile();
 		  String fileName = fc.getSelectedFile().toString();
+		  int l = fileName.length();
+		  //set to save as htm
+		  if (fc.getFileFilter() == htmFilter
+				  //check if it has an extension
+				  && !fileName.substring(l-4, l).equals(".htm") && !fileName.substring(l-5, l).equals(".html")){
+			  fileName += ".htm";
+		  }
 		  String textToSave = fr.getTextFromTabWindow(windows);
 		  
 		  try{
