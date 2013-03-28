@@ -5,7 +5,6 @@
  */
 
 package Views;
-import java.awt.MenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -15,6 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultEditorKit;
 
 import Tag.TagCollection;
@@ -26,15 +26,17 @@ public class RightClickMenu extends MouseAdapter{
 	TextWindow tw;
 	JPopupMenu menu;
 	
-	public RightClickMenu(TextWindow tw, TagCollection tabs) {
+	/**
+	 * initialize the menu
+	 */
+	public RightClickMenu(TextWindow tw, TagCollection tags) {
 		
-		//initialize the menu
+		
 		JPopupMenu menu = new JPopupMenu();
         JMenu insert = new JMenu("Insert");
-        ArrayList<JMenuItem> tags = new ArrayList<JMenuItem>();
         
         //get the list of tabs
-        for (ArrayList<String> al : tabs.getNames()){
+        for (ArrayList<String> al : tags.getNames()){
         	int i = 0;
         	JMenu category = new JMenu();
         	insert.add(category);
@@ -45,7 +47,7 @@ public class RightClickMenu extends MouseAdapter{
         		} 
         		else {
         			JMenuItem tag = new JMenuItem(str);
-        			tag.addActionListener(makeInsertListener(tabs.getTag(str)));
+        			tag.addActionListener(makeInsertListener(tags.getTag(str)));
         			category.add(tag);
         		}
         			
@@ -64,9 +66,18 @@ public class RightClickMenu extends MouseAdapter{
         menu.add(copy);
         menu.add(paste);
         
+        JMenuItem indent = new JMenuItem("Indent Line(s)");
+        indent.addActionListener(indentListener);
+        menu.add(indent);
+        
+        JMenuItem indentAll = new JMenuItem("Indent All");
+        indentAll.addActionListener(indentAllListener);
+        menu.add(indentAll);
+        
         this.tw = tw;
         this.menu = menu;
         
+       
 	}
 
 	public void mousePressed(MouseEvent e){
@@ -84,7 +95,11 @@ public class RightClickMenu extends MouseAdapter{
     }
     
    
-    //create the listener to add to the insert menu items
+    /**
+     * create the listener to add to the insert menu items
+     * @param str
+     * @return
+     */
     ActionListener makeInsertListener(final String str){
     	ActionListener insertAction = new ActionListener(){
 
@@ -103,6 +118,56 @@ public class RightClickMenu extends MouseAdapter{
     	};
     	return insertAction;
     }
+    
+    /**
+     * gets the selected lines and calls indentText()
+     */
+    ActionListener indentListener = new ActionListener(){
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			int start = tw.getSelectionStart();
+			int end = tw.getSelectionEnd();
+			int lineStart = 0;
+			int lineEnd = 0;
+			
+			try {
+				lineStart = tw.getLineOfOffset(start);
+				lineEnd = tw.getLineOfOffset(end);
+			} catch (BadLocationException e1) {
+				e1.printStackTrace();
+			}
+			
+			indentText(lineStart, lineEnd);
+		}
+    };
+    
+    /**
+     * gets all the lines and calls indentText()
+     */
+    ActionListener indentAllListener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int lineEnd = tw.getLineCount()-1;
+			indentText(0, lineEnd);
+		}
+	};
+    
+	//indents the given lines or line the caret is on
+    void indentText(int lineStart, int lineEnd){
+    	try {
+			
+			
+			for (int i=lineEnd; i>=lineStart; i--){
+				int target = tw.getLineStartOffset(i);
+				tw.insert("\t", target);
+			}
+		} catch (BadLocationException e1) {
+			e1.printStackTrace();
+		}
+    }
+    
+    
     
 }
     

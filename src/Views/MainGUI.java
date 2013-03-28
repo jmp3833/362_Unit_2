@@ -10,9 +10,7 @@
 package Views;
 import java.awt.*;
 
-import Tag.TagCollection;
 import Views.MenuBar;
-import Views.TextWindow;
 
 import javax.swing.*;
 
