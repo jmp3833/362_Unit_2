@@ -11,6 +11,7 @@ package Views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import Observers.CheckObserver;
 import Observers.FileObserver;
@@ -44,8 +45,11 @@ public class MenuBar {
   Command enableTextWrapCommand ;
   Command disableTextWrapCommand ;
   Command checkCommand;
+  Command InsertTagCommand;
   Command InsertTableCommand ;
   CommandInvoker invoker; 
+  
+  String tagString = "";
   
   public MenuBar(TextTabWindow mainWindow){
 	  this.autoWrap = true; //Program begins with autoWrap on by default.
@@ -59,13 +63,14 @@ public class MenuBar {
 	  this.o = new FileObserver(mainWindow,tabProxy);
 	  this.s = new SettingsObserver(tabProxy, mainWindow);
 	  this.c = new CheckObserver(mainWindow,activeTextBuffer,tags);
-	  this.i = new InsertObserver(tabProxy, mainWindow);
+	  this.i = new InsertObserver(tabProxy, mainWindow, "", tags);
 	  
 	  //File commands
       this.saveCommand = new SaveCommand(o) ;
  	  this.createCommand = new CreateCommand(o) ;
  	  this.loadCommand = new LoadCommand(o) ;
  	  this.quitCommand = new QuitCommand(o) ;
+ 	  
  	  
  	  //Settings commands 
  	  this.changeTabLengthCommand = new ChangeTabLengthCommand(s);
@@ -74,6 +79,7 @@ public class MenuBar {
  	  
  	  //Insert commands 
  	  this.InsertTableCommand = new InsertTableCommand(i);
+ 	  this.InsertTagCommand = new InsertTagCommand(i);
  	  
  	  //Checker command(s)
  	  this.checkCommand = new CheckCommand(c);
@@ -99,6 +105,26 @@ public class MenuBar {
 	  insert = new JMenu("Insert");
 	  settings = new JMenu("Settings");
 	  check = new JMenu("Check");
+	  
+      
+      //get the list of tabs
+      for (ArrayList<String> al : tags.getNames()){
+      	int iterator = 0;
+      	JMenu category = new JMenu();
+      	insert.add(category);
+      	for (String str : al){
+      		if (iterator == 0){
+      			category.setText(str);
+      			iterator++;
+      		} 
+      		else {
+      			JMenuItem tag = new JMenuItem(str);
+      			tag.addActionListener(makeInsertListener(str));
+      			category.add(tag);
+      		}
+      			
+      	}
+      }
 	  
 	  
 	  //Adds menu items to their respective menu bars 
@@ -233,7 +259,28 @@ public class MenuBar {
 	  menuBar.add(insert);
 	  menuBar.add(check);
 	  
+	  
 	  return menuBar;
 	  
+  }
+  
+  /**
+   * create the listener to add to the insert menu items
+   * @param str
+   * @return
+   */
+  ActionListener makeInsertListener(final String str){
+  	ActionListener insertAction = new ActionListener(){
+
+  		//inserts the tag at the caret's position
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				i.changeInsertString(str);
+				invoker.invokeCommand(InsertTagCommand);
+				
+			}
+  		
+  	};
+  	return insertAction;
   }
 }

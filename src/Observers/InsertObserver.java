@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import Tag.Table;
+import Tag.TagCollection;
 import Text_Windows.FileReader;
 import Views.TextTabWindow;
 import Command.Receiver ;
@@ -20,9 +21,15 @@ public class InsertObserver implements Receiver{
 
 	FileReader fr;
 	TextTabWindow mainWindow;
-	public InsertObserver(FileReader fr, TextTabWindow mainWindow){
+	String insertString;
+	TagCollection tags;
+	
+	public InsertObserver(FileReader fr, TextTabWindow mainWindow, 
+			String insertString, TagCollection tags){
 		this.mainWindow = mainWindow;
+		this.insertString = insertString;
 		this.fr = fr;
+		this.tags = tags;
 	}
 	
 	/**
@@ -44,6 +51,29 @@ public class InsertObserver implements Receiver{
 		
 		Table t = new Table(numRows,numCols,tabSize);
 		activeWindow.append(t.print());
+	}
+	
+	/**
+	 * Inserts a tag construct into the active text window
+	 */
+	public void insertTag(){
+		
+		JTextArea tw = fr.getSelectedTextArea(mainWindow);
+		
+		String tagString = tags.getTag(insertString);
+		int pos = tw.getCaretPosition();
+		int displacement = tagString.length()/2;
+		
+		tw.insert(tagString, pos);
+		tw.setCaretPosition(pos+displacement);
+	}
+	
+	/**
+	 * Allows the insertTag command to know what tag to insert.
+	 * @param newString 
+	 */
+	public void changeInsertString(String newString){
+		insertString = newString;
 	}
 	
 }

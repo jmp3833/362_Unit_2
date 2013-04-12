@@ -9,9 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.text.BadLocationException;
@@ -33,29 +30,8 @@ public class RightClickMenu extends MouseAdapter{
 		
 		
 		JPopupMenu menu = new JPopupMenu();
-        JMenu insert = new JMenu("Insert");
-        
-        //get the list of tabs
-        for (ArrayList<String> al : tags.getNames()){
-        	int i = 0;
-        	JMenu category = new JMenu();
-        	insert.add(category);
-        	for (String str : al){
-        		if (i == 0){
-        			category.setText(str);
-        			i++;
-        		} 
-        		else {
-        			JMenuItem tag = new JMenuItem(str);
-        			tag.addActionListener(makeInsertListener(tags.getTag(str)));
-        			category.add(tag);
-        		}
-        			
-        	}
-        }
-        
+ 
         //insert the different menu options
-        menu.add(insert);
         JMenuItem cut = new JMenuItem(new DefaultEditorKit.CutAction());
         cut.setText("Cut");
         JMenuItem copy = new JMenuItem(new DefaultEditorKit.CopyAction());
@@ -94,30 +70,6 @@ public class RightClickMenu extends MouseAdapter{
         menu.show(e.getComponent(), e.getX(), e.getY());
     }
     
-   
-    /**
-     * create the listener to add to the insert menu items
-     * @param str
-     * @return
-     */
-    ActionListener makeInsertListener(final String str){
-    	ActionListener insertAction = new ActionListener(){
-
-    		//inserts the tag at the caret's position
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//moves the caret to inbetween the cursors
-				int pos = tw.getCaretPosition();
-				int displacement = str.length()/2;
-				
-				tw.insert(str, pos);
-				tw.setCaretPosition(pos+displacement);
-				
-			}
-    		
-    	};
-    	return insertAction;
-    }
     
     /**
      * gets the selected lines and calls indentText()
