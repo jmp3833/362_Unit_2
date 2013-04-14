@@ -87,8 +87,7 @@ public class FileObserver implements Receiver{
 	  String fileName = JOptionPane.showInputDialog(null, "Enter Filename: ", 
 				"Enter desired name of your file: ", 1);
 	  TagCollection t = new TagCollection();
-		  TextWindow newWindow = new TextWindow(fileName,
-	    		  windows,t);
+		  new TextWindow(fileName,windows,t);
   }
   
   /**

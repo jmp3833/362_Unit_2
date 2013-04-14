@@ -21,7 +21,6 @@ import Tag.Buffer;
 import Tag.TagCollection;
 import Text_Windows.FileReader;
 import Command.*;
-
 import javax.swing.*;
 
 public class MenuBar {
@@ -176,7 +175,7 @@ public class MenuBar {
           });
 
 	  
-	  insertTagTable = new JMenuItem("Insert Table");
+	  insertTagTable = new JMenuItem("Table Construct");
 	  insertTagTable.addActionListener(new ActionListener(){
 
 		@Override
@@ -263,6 +262,7 @@ public class MenuBar {
 	  return menuBar;
 	  
   }
+  
   
   /**
    * create the listener to add to the insert menu items
