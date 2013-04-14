@@ -9,6 +9,20 @@
 
 package Command;
 
-public class UndoCommand {
+import Observers.EditObserver;
+
+public class UndoCommand implements Command{
+
+        private EditObserver editObserver ;
+
+        public UndoCommand(EditObserver newEditObserver){
+
+                editObserver = newEditObserver ;
+
+        }
+
+        public void execute(){
+        	editObserver.undoText();
+        }
 
 }

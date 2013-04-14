@@ -8,6 +8,22 @@
  
 package Command;
 
-public class RedoCommand {
+import Observers.EditObserver;
+
+public class RedoCommand implements Command{
+
+        private EditObserver editObserver ;
+
+        public RedoCommand(EditObserver newEditObserver){
+
+                editObserver = newEditObserver ;
+
+        }
+
+        public void execute(){
+
+                editObserver.redoText();
+
+        }
 
 }

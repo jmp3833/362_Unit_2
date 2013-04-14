@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import Memento.Originator;
 import Memento.UndoCaretaker;
 import Observers.CheckObserver;
+import Observers.EditObserver;
 import Observers.FileObserver;
 import Observers.InsertObserver;
 import Observers.SettingsObserver;
@@ -35,6 +36,7 @@ public class MenuBar {
   SettingsObserver s;
   CheckObserver c;
   InsertObserver i;
+  EditObserver e;
   
   TagCollection tags;
   
@@ -46,8 +48,10 @@ public class MenuBar {
   Command enableTextWrapCommand ;
   Command disableTextWrapCommand ;
   Command checkCommand;
-  Command InsertTagCommand;
+  Command InsertTagCommand ;
   Command InsertTableCommand ;
+  Command undoCommand;
+  Command redoCommand;
   CommandInvoker invoker; 
   
   String tagString = "";
@@ -248,7 +252,7 @@ public class MenuBar {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			//TODO: Link undo command 
+			invoker.invokeCommand(undoCommand);
 			
 		}
 		  
@@ -259,11 +263,17 @@ public class MenuBar {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			//TODO: Link redo command 
+			invoker.invokeCommand(redoCommand);
 			
 		}
 		  
 	  });
+	  
+	  //Creates an EditObserver for undo and redo
+	  this.e = new EditObserver
+			  (tabProxy.getSelectedTextArea(mainWindow),undo,redo);
+	  this.undoCommand = new UndoCommand(e);
+	  this.redoCommand = new RedoCommand(e);
 	  
 	  //Populates the "File" sub menu
 	  file.add(newFile);
