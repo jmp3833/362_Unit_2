@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import Memento.Originator;
+import Memento.UndoCaretaker;
 import Observers.CheckObserver;
 import Observers.FileObserver;
 import Observers.InsertObserver;
@@ -49,6 +51,16 @@ public class MenuBar {
   CommandInvoker invoker; 
   
   String tagString = "";
+  
+  //Memento setup for undo/redo operations
+  UndoCaretaker caretaker = new UndoCaretaker();
+  Originator originator = new Originator();
+  
+  int saveFiles = 0; //number of mementos 
+  int currentArticle = 0; //Currently selected article
+  
+		  
+  
   
   public MenuBar(TextTabWindow mainWindow){
 	  this.autoWrap = true; //Program begins with autoWrap on by default.
@@ -91,7 +103,7 @@ public class MenuBar {
 	  //Main menu bar at the top of the screen
 	  JMenuBar menuBar;
 	  //Main menus that an be accessed from the menu bar
-	  JMenu file, settings, check, insert;
+	  JMenu file, settings, check, insert, edit;
 	  //Items that can be selected through menus
 	  JMenuItem save, quit, open, tabSize, textWrapping, newFile,
 	  checkPrompt, insertTagTable;
@@ -100,7 +112,7 @@ public class MenuBar {
 	  menuBar = new JMenuBar();
 	  file = new JMenu("File");
 	  
-	  //edit = new JMenu("Edit");
+	  edit = new JMenu("Edit");
 	  insert = new JMenu("Insert");
 	  settings = new JMenu("Settings");
 	  check = new JMenu("Check");
@@ -231,6 +243,27 @@ public class MenuBar {
 			  
 		  });
 	  
+	  JMenuItem undo = new JMenuItem("Undo");
+	  undo.addActionListener(new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			//TODO: Link undo command 
+			
+		}
+		  
+	  });
+	  
+	  JMenuItem redo = new JMenuItem("Redo");
+	  undo.addActionListener(new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			//TODO: Link redo command 
+			
+		}
+		  
+	  });
 	  
 	  //Populates the "File" sub menu
 	  file.add(newFile);
@@ -248,12 +281,13 @@ public class MenuBar {
 	  //Populates the "Insert" sub menu 
 	  insert.add(insertTagTable);
 	  
+	  //Populates the edit sub menu
+	  edit.add(undo);
+	  edit.add(redo);
+	  
 	  //Adds the menus to the bar
 	  menuBar.add(file);
-	  /*
-	   * TODO: Add undo/redo functionality to an edit sub menu.
-	   *  menuBar.add(edit);
-	   */
+	  menuBar.add(edit);
 	  menuBar.add(settings);
 	  menuBar.add(insert);
 	  menuBar.add(check);

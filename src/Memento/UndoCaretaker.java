@@ -30,14 +30,10 @@ public class UndoCaretaker {
 	
 	/**
 	 * Gets the most recently added memento off of the ArrayList
+	 * @param index the index of the ArrayList with the desired memento
 	 * @return the memento object
 	 */
-    public Memento getMemento(){
-    	
-    	int lastIndex = mementos.size()-1;
-		Memento m = mementos.get(lastIndex);
-		mementos.remove(lastIndex);
-		
-		return m;
+    public Memento getMemento(int index){
+    	return mementos.get(index);
 	}
 }
