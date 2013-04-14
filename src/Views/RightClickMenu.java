@@ -11,9 +11,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultEditorKit;
 
+import Command.Command;
+import Command.CommandInvoker;
+import Command.IndentAllTextCommand;
+import Command.IndentTextCommand;
+import Observers.RightClickObserver;
 import Tag.TagCollection;
 
 
@@ -23,10 +27,22 @@ public class RightClickMenu extends MouseAdapter{
 	TextWindow tw;
 	JPopupMenu menu;
 	
+	//Declares commands and their invoker.
+	CommandInvoker invoker;
+	Command indentTextCommand;
+	Command indentAllTextCommand;
+	RightClickObserver r;
+	
 	/**
 	 * initialize the menu
 	 */
 	public RightClickMenu(TextWindow tw, TagCollection tags) {
+		
+		//Commands for the right click menu
+		this.invoker = new CommandInvoker();
+		this.r = new RightClickObserver(tw);
+		this.indentTextCommand = new IndentTextCommand(r);
+		this.indentAllTextCommand = new IndentAllTextCommand(r);
 		
 		
 		JPopupMenu menu = new JPopupMenu();
@@ -77,20 +93,7 @@ public class RightClickMenu extends MouseAdapter{
     ActionListener indentListener = new ActionListener(){
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			int start = tw.getSelectionStart();
-			int end = tw.getSelectionEnd();
-			int lineStart = 0;
-			int lineEnd = 0;
-			
-			try {
-				lineStart = tw.getLineOfOffset(start);
-				lineEnd = tw.getLineOfOffset(end);
-			} catch (BadLocationException e1) {
-				e1.printStackTrace();
-			}
-			
-			indentText(lineStart, lineEnd);
+			invoker.invokeCommand(indentTextCommand);
 		}
     };
     
@@ -100,25 +103,9 @@ public class RightClickMenu extends MouseAdapter{
     ActionListener indentAllListener = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			int lineEnd = tw.getLineCount()-1;
-			indentText(0, lineEnd);
+			invoker.invokeCommand(indentAllTextCommand);
 		}
 	};
-    
-	//indents the given lines or line the caret is on
-    void indentText(int lineStart, int lineEnd){
-    	try {
-			
-			
-			for (int i=lineEnd; i>=lineStart; i--){
-				int target = tw.getLineStartOffset(i);
-				tw.insert("\t", target);
-			}
-		} catch (BadLocationException e1) {
-			e1.printStackTrace();
-		}
-    }
-    
     
     
 }
