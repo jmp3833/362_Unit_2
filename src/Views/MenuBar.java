@@ -52,6 +52,7 @@ public class MenuBar {
   Command InsertTableCommand ;
   Command undoCommand;
   Command redoCommand;
+  Command saveTextCommand;
   CommandInvoker invoker; 
   
   String tagString = "";
@@ -98,7 +99,7 @@ public class MenuBar {
  	  
  	  //Checker command(s)
  	  this.checkCommand = new CheckCommand(c);
-
+ 	 
   }
   
   
@@ -179,6 +180,7 @@ public class MenuBar {
 		public void actionPerformed(ActionEvent e) {
 			//Command Pattern Used
 			invoker.invokeCommand(loadCommand) ;
+			invoker.invokeCommand(saveTextCommand);
 		}
 	  });
 	  newFile = new JMenuItem("New");
@@ -187,6 +189,7 @@ public class MenuBar {
                 public void actionPerformed(ActionEvent e) {
 			//Command Pattern Used 
                         invoker.invokeCommand(createCommand) ;
+                        invoker.invokeCommand(saveTextCommand);
                 }
           });
 
@@ -197,6 +200,8 @@ public class MenuBar {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			invoker.invokeCommand(InsertTableCommand);
+			invoker.invokeCommand(saveTextCommand);
+			
 			
 		}
 		  
@@ -248,6 +253,7 @@ public class MenuBar {
 		  });
 	  
 	  JMenuItem undo = new JMenuItem("Undo");
+	  undo.setEnabled(false);
 	  undo.addActionListener(new ActionListener(){
 
 		@Override
@@ -259,7 +265,8 @@ public class MenuBar {
 	  });
 	  
 	  JMenuItem redo = new JMenuItem("Redo");
-	  undo.addActionListener(new ActionListener(){
+	  redo.setEnabled(false);
+	  redo.addActionListener(new ActionListener(){
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -271,7 +278,10 @@ public class MenuBar {
 	  
 	  //Creates an EditObserver for undo and redo
 	  this.e = new EditObserver
-			  (tabProxy.getSelectedTextArea(mainWindow),undo,redo);
+			  (tabProxy,undo,redo,mainWindow);
+	  
+	  //Edit comamnds
+ 	  this.saveTextCommand = new SaveTextCommand(e);
 	  this.undoCommand = new UndoCommand(e);
 	  this.redoCommand = new RedoCommand(e);
 	  
@@ -321,6 +331,7 @@ public class MenuBar {
 			public void actionPerformed(ActionEvent e) {
 				i.changeInsertString(str);
 				invoker.invokeCommand(InsertTagCommand);
+				invoker.invokeCommand(saveTextCommand);
 				
 			}
   		

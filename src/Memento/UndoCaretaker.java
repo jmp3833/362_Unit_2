@@ -34,6 +34,6 @@ public class UndoCaretaker {
 	 * @return the memento object
 	 */
     public Memento getMemento(int index){
-    	return mementos.get(index);
+    		return mementos.get(index);
 	}
 }

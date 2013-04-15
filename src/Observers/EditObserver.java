@@ -9,16 +9,18 @@
 package Observers;
 
 import javax.swing.JMenuItem;
-import javax.swing.JTextArea;
 
 import Memento.Originator;
 import Memento.UndoCaretaker;
+import Text_Windows.FileReader;
+import Views.TextTabWindow;
 
 public class EditObserver {
 	
-	JTextArea tw;
+	FileReader fr;
 	Originator originator;
 	UndoCaretaker caretaker;
+	TextTabWindow mainWindow;
 	JMenuItem undo;
 	JMenuItem redo;
 	int saveFiles = 0; //Number of mementos created
@@ -29,8 +31,9 @@ public class EditObserver {
 	 * Constructs necessary objects to do edit commands
 	 * @param jTextArea
 	 */
-	public EditObserver(JTextArea tw, JMenuItem undo, JMenuItem redo){
-		this.tw = tw;
+	public EditObserver(FileReader fr, JMenuItem undo, JMenuItem redo, TextTabWindow mainWindow){
+		this.mainWindow = mainWindow;
+		this.fr = fr;
 		this.originator = new Originator();
 		this.caretaker = new UndoCaretaker();
 		this.undo = undo;
@@ -42,12 +45,12 @@ public class EditObserver {
 	 * @param undo the menu item will be greyed out until an item is added.
 	 */
 	public void saveText(){
-		String storedText =  tw.getText();
+		String storedText =  fr.getTextFromTabWindow(mainWindow);
 		originator.set(storedText);
 		caretaker.addMemento(originator.store());
 		saveFiles++;
 		currentArticle++;
-		undo.setVisible(true);
+		undo.setEnabled(true);
 	}
 	
 	/**
@@ -60,27 +63,29 @@ public class EditObserver {
 			currentArticle --;
 			String restoreString = originator.restore
 					(caretaker.getMemento(currentArticle));
-			tw.setText(restoreString);
-			undo.setEnabled(true);
+			fr.getSelectedTextArea(mainWindow).setText(restoreString);
+			redo.setEnabled(true);
 		}
 		else{
 			undo.setEnabled(false);
 		}
+		
 	}
 	
 	/**
 	 * Restores a newly undone text to a window using memento
 	 */
 	public void redoText(){
-		if((saveFiles -1) > currentArticle){
+		if((saveFiles-1) > currentArticle){
 			currentArticle ++;
 			
 			String restoreString = originator.restore
 					(caretaker.getMemento(currentArticle));
-			tw.setText(restoreString);
-			redo.setEnabled(true);
+			fr.getSelectedTextArea(mainWindow).setText(restoreString);
+			undo.setEnabled(true);
 		}
 		else{redo.setEnabled(false);}
+		
 	}
 	
 }
