@@ -11,7 +11,7 @@ import java.util.Stack;
 public class Buffer {
 	
 	//stack of tags
-	Stack<String> theStack;
+	Stack<TagInterface> theStack;
 	
 	/**
 	 * This is the main method of the buffer that reads through the text and identifies all
@@ -24,7 +24,7 @@ public class Buffer {
 		boolean inTag = false;
 		String temp = "";
 		int lineNum = 1;
-		theStack = new Stack<String>();
+		theStack = new Stack<TagInterface>();
 		
 		//loop through the text
 		for(int i = 0; i<textArray.length;i++){
@@ -48,7 +48,7 @@ public class Buffer {
 						return "</" + temp + "> on line " + lineNum + " has no start tag.";
 					}
 					//pop off of stack and compare tags
-					if(!(theStack.pop().equals(temp))){
+					if(!(theStack.pop().checkEnd("</" + temp + ">"))){
 						//give invalid tag name
 						return "</" + temp + "> on line " + lineNum + " may be spelled incorrectly or in the wrong place";
 					}
@@ -56,11 +56,11 @@ public class Buffer {
 				//if not an end tag
 				} else {
 					//Check to see if the tag is valid
-					if(!tags.checkTag(temp)){
+					if(!tags.checkTag('<' + temp + '>')){
 						return "<" + temp + "> on line " + lineNum + " is an invalid tag";
 					}
 					//If valid push onto the stack
-					theStack.push(temp);
+					theStack.push(tags.getBufferedTag());
 				}
 				
 				//no longer in a tag
@@ -86,7 +86,7 @@ public class Buffer {
 		}
 		
 		//if not empty
-		return "<" + theStack.pop() + "> does not have an end tag.";
+		return theStack.pop().getOpening() + " does not have an end tag.";
 	}
 
 }

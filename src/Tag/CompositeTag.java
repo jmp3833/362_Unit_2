@@ -85,4 +85,16 @@ public class CompositeTag implements TagInterface {
 		return name;
 	}
 
+	@Override
+	public boolean isType(String string) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean checkEnd(String temp) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

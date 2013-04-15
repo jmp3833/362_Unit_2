@@ -17,15 +17,17 @@ public class FieldTag implements TagInterface {
 	String name;
 	String tag;
 	String endTag;
+	String type;
 	ArrayList<String> fields;
 	ArrayList<String> fieldValues;
 
-	public FieldTag(String myName, String myTag,ArrayList<String> myFields){
+	public FieldTag(String myName, String myTag, ArrayList<String> myFields,String myType){
 		name = myName;
 		tag = myTag;
-		endTag = '/' + tag;
+		endTag = "</" + tag + ">";
 		fields = myFields;
 		fieldValues = new ArrayList<String>();
+		type = myType;
 	}
 	
 	/* (non-Javadoc)
@@ -49,8 +51,11 @@ public class FieldTag implements TagInterface {
 		
 		StringTokenizer st = new StringTokenizer(toCompare);
 		
+		String help = st.nextToken();
+		
 		//Check first part to see if it is the right tag
-		if(!st.nextToken().equals("<" + tag)){
+		if(!help.startsWith("<" + tag)){
+			System.out.println("test: " + "<" + tag + " Failed: " + help);
 			return false;
 		}
 		
@@ -60,11 +65,11 @@ public class FieldTag implements TagInterface {
 	        String temp = st.nextToken();
 	        found = false;
 	        for(int i = 0;i<fields.size();i++){
-	        	if(fields.get(i).equals(temp)){
+	        	if(temp.startsWith(fields.get(i))){
 	        		found = true;
 	        	}
 	        }
-	        if(found == false){
+	        if(found == false && temp.contains("=")){
 	        	return false;
 	        }
 	    }
@@ -94,6 +99,17 @@ public class FieldTag implements TagInterface {
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public boolean isType(String string) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean checkEnd(String temp) {
+		return temp.equals(endTag);
 	}
 
 }

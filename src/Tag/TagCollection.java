@@ -18,12 +18,13 @@ import java.util.Hashtable;
 public class TagCollection {
 	
 	//This is the table that will store all of the tags
-	Hashtable<String, Tag> tags;
+	Hashtable<String, TagInterface> tags;
+	TagInterface bufferTag;
 	
 	public TagCollection(){
 		
 		//Make the new hash table
-		tags = new Hashtable<String, Tag>();
+		tags = new Hashtable<String, TagInterface>();
 		
 		//Add Emphasis Tags
 		tags.put("b",new Tag("b","Bold","Emphasis"));
@@ -52,6 +53,22 @@ public class TagCollection {
 		tags.put("table",new Tag("table","Table","Tables"));
 		tags.put("tr",new Tag("tr","Table Row","Tables"));
 		tags.put("td",new Tag("td","Table cell","Tables"));
+		
+		//Image FieldTag
+		ArrayList<String> imageFields = new ArrayList<String>();
+		imageFields.add("src");
+		imageFields.add("alt");
+		imageFields.add("height");
+		imageFields.add("width");
+		tags.put("img",new FieldTag("Image","img",imageFields,"Field Tag"));
+		
+		//A FieldTag
+		ArrayList<String> aFields = new ArrayList<String>();
+		aFields.add("href");
+		aFields.add("target");
+		aFields.add("types");
+		aFields.add("sizes");
+		tags.put("a",new FieldTag("Link","a",aFields,"Field Tag"));
 	}
 	
 	/**
@@ -69,12 +86,14 @@ public class TagCollection {
 		lists.add("Lists");
 		ArrayList<String> tables = new ArrayList<String>();
 		tables.add("Tables");
+		ArrayList<String> fieldTags = new ArrayList<String>();
+		fieldTags.add("Field Tags");
 		
 		ArrayList<ArrayList<String>> names = new ArrayList<ArrayList<String>>();
 		
 		//Sort by type
-		for(Enumeration<Tag> temp = tags.elements(); temp.hasMoreElements();){
-			Tag thisTag = temp.nextElement();
+		for(Enumeration<TagInterface> temp = tags.elements(); temp.hasMoreElements();){
+			TagInterface thisTag = temp.nextElement();
 			if(thisTag.isType("Emphasis")){
 				emphasis.add(thisTag.getName());
 			} else if(thisTag.isType("Headers")){
@@ -83,12 +102,15 @@ public class TagCollection {
 				lists.add(thisTag.getName());
 			} else if(thisTag.isType("Tables")){
 				tables.add(thisTag.getName());
+			} else if(thisTag.isType("Field Tag")){
+				fieldTags.add(thisTag.getName());
 			}
 		}
 		names.add(emphasis);
 		names.add(headers);
 		names.add(lists);
 		names.add(tables);
+		names.add(fieldTags);
 		return names;
 	}
 	
@@ -98,10 +120,10 @@ public class TagCollection {
 	 * @return String
 	 */
 	public String getTag(String tagName){
-		for (Enumeration<Tag> temp = tags.elements(); temp.hasMoreElements();){
-			Tag current = temp.nextElement();
+		for (Enumeration<TagInterface> temp = tags.elements(); temp.hasMoreElements();){
+			TagInterface current = temp.nextElement();
 			if(current.getName() == tagName){
-				return current.insertTag();
+				return current.print();
 			}
 		}
 		return null;	
@@ -113,7 +135,13 @@ public class TagCollection {
 	 * @return boolean
 	 */
 	public boolean checkTag(String tagToCheck){
-		return tags.containsKey(tagToCheck);
+		for (TagInterface current : tags.values()) {
+			if(current.compare(tagToCheck)){
+				bufferTag = current;
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/**
@@ -124,5 +152,13 @@ public class TagCollection {
 	 */
 	public String makeTable(int rows, int columns, int tabLength){
 		return new Table(rows,columns,tabLength).print();
+	}
+	
+	/**
+	 * Returns the buffered tag for the stack to use in the buffer
+	 * @return
+	 */
+	public TagInterface getBufferedTag(){
+		return bufferTag;
 	}
 }

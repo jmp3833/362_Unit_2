@@ -25,21 +25,10 @@ public class Tag implements TagInterface {
 	 * @param String name
 	 */
 	public Tag(String tagName, String menuName, String myType){
-		String temp = "/";
-		opening = tagName;
-		closing = temp + tagName;
+		opening = '<' + tagName + '>';
+		closing = "</" + tagName + ">";
 		name = menuName;
 		type = myType;
-	}
-
-	/* (non-Javadoc)
-	 * @see Tag.TagInterface#print()
-	 */
-	@Override
-	public String print() {
-		String temp = "<" + opening + ">\n";
-		temp =  temp + "<" + closing + ">\n";
-		return temp;
 	}
 
 	/* (non-Javadoc)
@@ -84,8 +73,8 @@ public class Tag implements TagInterface {
 	 * Insert tag method used by the menu bar to insert a tag into the text
 	 * @return String
 	 */
-	public String insertTag(){
-		return "<" + opening +"><"+ closing + ">";
+	public String print(){
+		return opening + closing;
 	}
 	
 	/**
@@ -94,5 +83,10 @@ public class Tag implements TagInterface {
 	 */
 	public boolean isType(String testType){
 		return type.equals(testType);
+	}
+
+	@Override
+	public boolean checkEnd(String temp) {
+		return temp.equals(closing);
 	}
 }
