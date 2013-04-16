@@ -17,6 +17,11 @@ import Command.Command;
 import Command.CommandInvoker;
 import Command.IndentAllTextCommand;
 import Command.IndentTextCommand;
+import Command.CutCommand;
+import Command.CopyCommand;
+import Command.PasteCommand;
+import Command.SaveTextCommand;
+import Observers.EditObserver;
 import Observers.RightClickObserver;
 import Tag.TagCollection;
 
@@ -31,29 +36,69 @@ public class RightClickMenu extends MouseAdapter{
 	CommandInvoker invoker;
 	Command indentTextCommand;
 	Command indentAllTextCommand;
+	Command cutCommand;
+	Command copyCommand;
+	Command pasteCommand;
+	Command saveTextCommand;
 	RightClickObserver r;
+	EditObserver e;
 	
 	/**
 	 * initialize the menu
 	 */
-	public RightClickMenu(TextWindow tw, TagCollection tags) {
+	public RightClickMenu(TextWindow tw, TagCollection tags, EditObserver e) {
 		
 		//Commands for the right click menu
 		this.invoker = new CommandInvoker();
 		this.r = new RightClickObserver(tw);
+		this.e = e;
+		
 		this.indentTextCommand = new IndentTextCommand(r);
 		this.indentAllTextCommand = new IndentAllTextCommand(r);
-		
-		
+		this.cutCommand = new CutCommand(r);
+		this.copyCommand = new CopyCommand(r);
+		this.pasteCommand = new PasteCommand(r);
+		this.saveTextCommand = new SaveTextCommand(e);
+				
 		JPopupMenu menu = new JPopupMenu();
  
         //insert the different menu options
         JMenuItem cut = new JMenuItem(new DefaultEditorKit.CutAction());
         cut.setText("Cut");
+        cut.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				invoker.invokeCommand(saveTextCommand);
+				invoker.invokeCommand(cutCommand);
+				
+			}
+        	
+        });
         JMenuItem copy = new JMenuItem(new DefaultEditorKit.CopyAction());
         copy.setText("Copy");
+        copy.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				invoker.invokeCommand(saveTextCommand);
+				invoker.invokeCommand(copyCommand);
+				
+			}
+        	
+        });
         JMenuItem paste = new JMenuItem(new DefaultEditorKit.PasteAction());
         paste.setText("Paste");
+        paste.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				invoker.invokeCommand(saveTextCommand);
+				invoker.invokeCommand(pasteCommand);
+				
+			}
+        	
+        });
         menu.add(cut);
         menu.add(copy);
         menu.add(paste);

@@ -63,7 +63,8 @@ public class MenuBar {
   
   int saveFiles = 0; //number of mementos 
   int currentArticle = 0; //Currently selected article
-  
+  JMenuItem undo;
+  JMenuItem redo;
 		  
   
   
@@ -73,20 +74,23 @@ public class MenuBar {
 	  this.mainWindow = mainWindow;//Gets the textTabWindow passed from MainGUI
 	  this.activeTextBuffer = new Buffer();//Buffer gets instantiated here. 
 	  this.tags = new TagCollection(); //Instantiates a new TagCollection here
+	  this.undo = new JMenuItem("Undo");
+	  this.redo = new JMenuItem("Redo");
 	  
 	  invoker = new CommandInvoker();
 	  
-	  this.o = new FileObserver(mainWindow,tabProxy);
+	  //Instantiates all observers
 	  this.s = new SettingsObserver(tabProxy, mainWindow);
 	  this.c = new CheckObserver(mainWindow,activeTextBuffer,tags);
 	  this.i = new InsertObserver(tabProxy, mainWindow, "", tags);
+	  this.e = new EditObserver(tabProxy,undo,redo,mainWindow);
+	  this.o = new FileObserver(mainWindow,tabProxy,e);
 	  
 	  //File commands
       this.saveCommand = new SaveCommand(o) ;
  	  this.createCommand = new CreateCommand(o) ;
  	  this.loadCommand = new LoadCommand(o) ;
  	  this.quitCommand = new QuitCommand(o) ;
- 	  
  	  
  	  //Settings commands 
  	  this.changeTabLengthCommand = new ChangeTabLengthCommand(s);
@@ -99,7 +103,12 @@ public class MenuBar {
  	  
  	  //Checker command(s)
  	  this.checkCommand = new CheckCommand(c);
- 	 
+ 	  
+ 	  //Edit comamnds
+ 	  this.saveTextCommand = new SaveTextCommand(e);
+	  this.undoCommand = new UndoCommand(e);
+	  this.redoCommand = new RedoCommand(e);
+	       	 
   }
   
   
@@ -116,13 +125,34 @@ public class MenuBar {
 	  //Creates each menu of the menubar
 	  menuBar = new JMenuBar();
 	  file = new JMenu("File");
-	  
 	  edit = new JMenu("Edit");
 	  insert = new JMenu("Insert");
 	  settings = new JMenu("Settings");
 	  check = new JMenu("Check");
 	  
-      
+	  
+	  undo.setEnabled(false);
+	  undo.addActionListener(new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			invoker.invokeCommand(undoCommand);
+			
+		}
+		  
+	  });
+	  
+	  redo.setEnabled(false);
+	  redo.addActionListener(new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			invoker.invokeCommand(redoCommand);
+			
+		}
+		  
+	  });
+	  
       //get the list of tabs
       for (ArrayList<String> al : tags.getNames()){
       	int iterator = 0;
@@ -252,38 +282,7 @@ public class MenuBar {
 			  
 		  });
 	  
-	  JMenuItem undo = new JMenuItem("Undo");
-	  undo.setEnabled(false);
-	  undo.addActionListener(new ActionListener(){
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			invoker.invokeCommand(undoCommand);
-			
-		}
-		  
-	  });
 	  
-	  JMenuItem redo = new JMenuItem("Redo");
-	  redo.setEnabled(false);
-	  redo.addActionListener(new ActionListener(){
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			invoker.invokeCommand(redoCommand);
-			
-		}
-		  
-	  });
-	  
-	  //Creates an EditObserver for undo and redo
-	  this.e = new EditObserver
-			  (tabProxy,undo,redo,mainWindow);
-	  
-	  //Edit comamnds
- 	  this.saveTextCommand = new SaveTextCommand(e);
-	  this.undoCommand = new UndoCommand(e);
-	  this.redoCommand = new RedoCommand(e);
 	  
 	  //Populates the "File" sub menu
 	  file.add(newFile);

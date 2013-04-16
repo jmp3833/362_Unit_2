@@ -60,4 +60,23 @@ public class RightClickObserver {
 		
 		indentText(lineStart, lineEnd);
 	}
+	
+	/**
+	 * Performs a cut operation.
+	 */
+	public void cut(){
+		
+	}
+	/**
+	 * Performs a copy operation.
+	 */
+	public void copy(){
+		
+	}
+	/**
+	 * Performs a paste operation.
+	 */
+	public void paste(){
+	
+	}	
 }

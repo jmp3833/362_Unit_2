@@ -28,10 +28,12 @@ public class FileObserver implements Receiver{
 	
 	TextTabWindow windows;
 	FileReader fr;
+	EditObserver e;
 	
-	public FileObserver(TextTabWindow windows, FileReader fr){
+	public FileObserver(TextTabWindow windows, FileReader fr, EditObserver e){
 		this.windows = windows;
 		this.fr = fr;
+		this.e = e;
 
 	}
 	
@@ -66,7 +68,7 @@ public class FileObserver implements Receiver{
 	      TagCollection t = new TagCollection();
 	    		  
 	      TextWindow newWindow = new TextWindow(file.getName(),
-	    		  windows,t);
+	    		  windows,t,e);
 	      try {
 			Scanner reader = new Scanner(file);
 		    while(reader.hasNextLine()){
@@ -87,7 +89,7 @@ public class FileObserver implements Receiver{
 	  String fileName = JOptionPane.showInputDialog(null, "Enter Filename: ", 
 				"Enter desired name of your file: ", 1);
 	  TagCollection t = new TagCollection();
-		  new TextWindow(fileName,windows,t);
+		  new TextWindow(fileName,windows,t,e);
   }
   
   /**
