@@ -1,0 +1,539 @@
+commit 642cadff234307920f946d273734bb79ccdbcbd0
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Thu Mar 28 04:05:00 2013 -0400
+
+    Added file filters
+    Open/save defaults to .htm and .html
+    Save appends .htm if extension is does already there
+
+commit 1325e3fbb33d9aa2601d6de6d6299c69cfa6c816
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Thu Mar 28 01:24:26 2013 -0400
+
+    Fixed: jar didn't push
+
+commit cc157a6350e8a970ed0441f4d719f8818222c8a9
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Thu Mar 28 01:23:41 2013 -0400
+
+    Added indent(lines) and indent(all) to RightClickMenu.
+
+commit 8c5c9b2a45620944aa48455b64dac599d197fd04
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Wed Mar 27 17:46:07 2013 -0400
+
+    Changed FileObserver so you can save to directories on Windows machines.
+    Note: make sure this works on Macs.
+    Recompiled and added additional jar.
+    Removed unnecessary class.
+
+commit ca357d1e95989a4c7e16dcbecf13c3b94142c63e
+Merge: d48e534 9386c17
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Wed Mar 27 17:43:00 2013 -0400
+
+    Merge branch 'master' of https://github.com/jmp3833/362_Unit_2.git
+
+commit d48e534576a3b72db7211f08a927434bf0c06550
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Wed Mar 27 17:42:06 2013 -0400
+
+    Changed FileObserver so you can save to directories on Windows machines.
+    Note: make sure this works on Macs.
+    Recompiled jar.
+    Removed unnecessary class in views.
+
+commit 9386c17cf5d501c3b9a3c10c63f843e47dd20fd3
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Wed Mar 27 17:27:28 2013 -0400
+
+    Created a jarfile for in class domonstration
+
+commit 54e43cee16c3dd466de62b8f30462c308f379a93
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Wed Mar 27 17:25:22 2013 -0400
+
+    Final revision of R1 project
+
+commit 71a20fada5101b37e5e36738526070c4a1e1ec79
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Wed Mar 27 01:33:08 2013 -0400
+
+    Added a "final" project excecutable jarfile
+
+commit ce1c790e8041a3c3508b699c9e9788f773e088e4
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Wed Mar 27 01:16:00 2013 -0400
+
+    More robustness checking. project looks good!
+
+commit 68f0990fc2ad69f9158fbfc788a7e40e518e870e
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Wed Mar 27 01:00:54 2013 -0400
+
+    Made various error checks more robust.
+
+commit 1f3b85b79f8ce6749086bce4683dfea94d5acfc8
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Wed Mar 27 00:45:31 2013 -0400
+
+    Editor now can open,save,quit,and close files
+
+commit 28c270e62a6e7cacee2b68bfe2210251ad50c5fe
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Wed Mar 27 00:19:06 2013 -0400
+
+    Shortened cut/copy/paste labels.
+
+commit f78da3e1327529df195f81e99dd904b1ddc4ab0c
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Wed Mar 27 00:16:52 2013 -0400
+
+    Added cut/copy/paste functionality to RightClickMenu.
+
+commit 26eed914d69aab6ec450d9422d96341c5d78ef62
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Wed Mar 27 00:10:14 2013 -0400
+
+    Fixed getSelectedTextArea issue in checker.
+
+commit 5e834520d36edbdae97d0896bb74870d9ff866b5
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Wed Mar 27 00:02:40 2013 -0400
+
+    Forgot to add the pane to the tab instead. Fixed.
+
+commit 15c44e80db8f5f7965b5d589fe4cef701b1ee0ab
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Wed Mar 27 00:00:09 2013 -0400
+
+    Implemented scrolling.
+    In TextWindow, it places itself into a JScrollPane first.
+    In FileReader, gets active window through Viewport.
+
+commit 8f998779bf54acda13f4f495e3c9bfd3d26a5cd8
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Tue Mar 26 23:55:31 2013 -0400
+
+    fixed paragraph tag, it was incorrect.
+
+commit eb5042ff24a51b4b7d335884b90e657e24211cbc
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Tue Mar 26 23:53:28 2013 -0400
+
+    Fixed another bug in the buffer. It was not emptying the stack between
+    uses.
+
+commit 64884530fcbdddff0efa91290b13b81682cc6036
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Tue Mar 26 23:48:33 2013 -0400
+
+    Fixed buffer some more
+
+commit 8789036bfe33b1b791b0c03bd4d0f77f6ace6888
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Tue Mar 26 23:37:55 2013 -0400
+
+    integrated right click bar and menu bar commands
+
+commit 967277627616967df4f688be12c6eaf895a190f8
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Tue Mar 26 23:21:12 2013 -0400
+
+    Right click menu implemented.
+    Added <> brackets to insertTag() in Tag.java.
+    Made it so that when you Open a new file, it places the cursor inside
+    automatically.
+    
+    Still more to come.
+
+commit 5503babe678d33911f0b94ddedad2c513d8ec056
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Tue Mar 26 23:04:12 2013 -0400
+
+    Enable/disable wrap and set tab size implemented.
+    More to come soon! :)
+
+commit 93171d87599fe7e8c9580894e50631f3671dd137
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Tue Mar 26 22:45:05 2013 -0400
+
+    Created functionality to load html files into the system
+
+commit 044aa3550d7536da1ff2d69cbfb5aa23ce434694
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Tue Mar 26 22:13:22 2013 -0400
+
+    Fixed final errors
+
+commit ce2fe5c5682dfa3d7c090d486828cc5506d6c026
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Tue Mar 26 22:12:03 2013 -0400
+
+    Really fixed it
+
+commit ac1269c79175fe7ce6d59ae38d637c544f81c3b1
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Tue Mar 26 22:10:11 2013 -0400
+
+    Fixed table
+
+commit 68f73e211e59864ff2171901fecb3ab11af1a129
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Tue Mar 26 22:05:32 2013 -0400
+
+    Now can insert tables into an active text window!
+
+commit d16f9609a75d892df78dba88b45db1912b2eaf23
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Tue Mar 26 21:31:43 2013 -0400
+
+    All menubar commands now link directly through the command pattern!
+
+commit be81eaf7b7c6b7b314dd9e4b0ddcbb9b5597dfde
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Tue Mar 26 20:58:18 2013 -0400
+
+    Added a new command to change tab length
+    Made this command callable in the MenuBar class
+
+commit a8f88aeea1f6fc7c63f6b9675f90bb346cf91f50
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Tue Mar 26 19:55:24 2013 -0400
+
+    Changed the TagCollection and Tags to store their types for the insert
+    tag feature.
+
+commit 96f56c9ed9d04b772eca274b26a33fe26320e592
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Tue Mar 26 09:27:56 2013 -0400
+
+    Adds TagCollection when TextWindow is instantiated.
+
+commit f1222d08ab791a2e066a13b839d8eae79b1a53b0
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Tue Mar 26 08:58:13 2013 -0400
+
+    Fixed issues with command pattern implementation
+
+commit 60e8f28b924e77c998792de6d5667c7c687ae44a
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Tue Mar 26 05:30:28 2013 -0400
+
+    Reverted MenuBar to newer version.
+
+commit 29d85612b3c740e4b55f69d859ec2183ce099144
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Tue Mar 26 05:29:00 2013 -0400
+
+    Added RightClickMenu which allows tags to be inserted. Connects to
+    TextWindow.
+
+commit 922cd5b7cf7805f66dad753e9a4b1cfe2605b46f
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Mon Mar 25 23:49:29 2013 -0400
+
+    Added the correct number of tabs to the table
+
+commit bc6dad0300a707b86c8bdca9a208f44237dd0e26
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Mon Mar 25 23:46:04 2013 -0400
+
+    Added comments to table
+
+commit 0322ad6951d385321b7fc4b0cbbeb8d43b8d4b9b
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Mon Mar 25 23:42:02 2013 -0400
+
+    Finished the table class and integrated it into tagCollection
+
+commit 04933cde07d0172cd5fce8b77b057968ae8cf602
+Merge: ae67869 9f11633
+Author: DANIEL HERNANDEZ <dfh4836@nitron.se.rit.edu>
+Date:   Mon Mar 25 22:43:52 2013 -0400
+
+    Merge branch 'master' of https://github.com/jmp3833/362_Unit_2
+
+commit ae67869f00a9e92810a3956f295b0f4d5fecce5f
+Author: DANIEL HERNANDEZ <dfh4836@nitron.se.rit.edu>
+Date:   Mon Mar 25 22:42:46 2013 -0400
+
+    Made the observers implement the receiver interface, fixed simple errors in Command classes
+
+commit 9f11633d69e7601b60a81914e4c96624d197b90d
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Mon Mar 25 22:32:02 2013 -0400
+
+    Removed un-used check class.
+
+commit 4b2f2c5170e8a59cbaec35c8c698576100deee82
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Mon Mar 25 21:31:23 2013 -0400
+
+    IDK WHATS GOING ON
+
+commit 4cc26753d31df28007d1d560facbe5f0fad36ab5
+Author: DANIEL HERNANDEZ <dfh4836@nitron.se.rit.edu>
+Date:   Mon Mar 25 21:26:08 2013 -0400
+
+    Added Receiver Clas
+
+commit 48da7187be559abcd3d6149e3fbb49946271660d
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Mon Mar 25 21:18:43 2013 -0400
+
+    hooray for command pattern
+
+commit 5a4565e2320aad26dd7da22115b3579d4ceb2eec
+Author: DANIEL HERNANDEZ <dfh4836@nitron.se.rit.edu>
+Date:   Mon Mar 25 21:14:52 2013 -0400
+
+    Added new Files correctly for Command
+
+commit 1c9cfaeb4a9cf4a8b6646cfa56b47a03db25dacf
+Author: DANIEL HERNANDEZ <dfh4836@nitron.se.rit.edu>
+Date:   Mon Mar 25 21:04:48 2013 -0400
+
+    Added most of the command functionality into the project
+
+commit 5ddf03bc8b64e1f6c59271e1d8986f4d5369ae8c
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Mon Mar 25 19:41:15 2013 -0400
+
+    editor now properly validates HTML!
+
+commit cd8c146951fd5ef36b3bb5a4f8ae9e831b1ec55e
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Mon Mar 25 06:39:46 2013 -0400
+
+    In TextWindow: changed JTextPane to JTextArea and added options for tab
+    resizing and wrapping (line, letter, and word).
+
+commit 9387baebd2f41cd6a6a56e15750c8e6fa049fa3c
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Mon Mar 25 00:52:15 2013 -0400
+
+    One of the tags was spelled wrong
+
+commit 29925cde8d82fea8f4270f55d92a8970883a1ccd
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Mon Mar 25 00:46:07 2013 -0400
+
+    Fixed error with buffer
+
+commit 84189ebbe796472f3132f8639de0e809a7830a29
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Mon Mar 25 00:37:15 2013 -0400
+
+    Fixed a bug where the validation stack was not initalized
+    Lolz at nullpointerexception
+
+commit 8020870f6e9525c466d61335912968782e876b85
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Mon Mar 25 00:19:16 2013 -0400
+
+    Made linkup between active text and the checker command
+
+commit cf29dabe65ee38af2562e8889647433983621c7f
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Sun Mar 24 23:33:37 2013 -0400
+
+    Minor changes to comments
+
+commit f364e98a14ebf57d5f1bb5d176ef9f792f08ef0b
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Sun Mar 24 22:48:15 2013 -0400
+
+    Finished buffer implementation
+
+commit e32c7391a11c8a0fdb52f7d6709e11eb084360f4
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Sun Mar 24 22:04:05 2013 -0400
+
+    Deleted stack
+
+commit 99880924127164317c060acdfd6d28dc374241a3
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Sun Mar 24 21:52:30 2013 -0400
+
+    Changeded all of the stuff in tag collection to make it usable
+    everywhere else
+
+commit 73fc477325e31b5baa707bd9c99b4560c406b84a
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Sun Mar 24 20:06:39 2013 -0400
+
+    Changed some dependencies
+
+commit 93f986c71a53186f1f9f9ef18e9f5454f4266d42
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Sun Mar 24 20:04:21 2013 -0400
+
+    Changes to MainGUi, TextWindow, and TextTabWindow.
+
+commit 42823fbf16fa7d754a59794015863b8db090ce04
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Sun Mar 24 19:41:58 2013 -0400
+
+    Changed some issues with textTabWindow due to merge conflict.
+
+commit e6af056b2016da0f2c9d2c38e4a58dace468dfdc
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Sun Mar 24 16:37:26 2013 -0400
+
+    Created textWindow and TextTabWindow skeleton classes
+    Made these so I can continue Proxy development.
+
+commit b61da21a0ffd17f3cc404e81876d2d4540ed94c1
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Sun Mar 24 15:57:56 2013 -0400
+
+    Made the "Settings" input fields more robust.
+    Catches exceptions for invalid user input.
+
+commit 7f47866972b00c0d9f68b1680a3193ce0011d26a
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Sun Mar 24 02:17:33 2013 -0400
+
+    Populated the TagCollection with basic tags.
+
+commit 3ae0f4a99539db77f1e0ff170dd6725f7975f07b
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Sat Mar 23 23:54:50 2013 -0400
+
+    Fixed errors with package names in programs all being not-capitialized
+
+commit faa03856366973319925c9b94e6275384b0bdc53
+Author: DANIEL HERNANDEZ <dfh4836@nitron.se.rit.edu>
+Date:   Sat Mar 23 21:50:51 2013 -0400
+
+    Skeleton files for command committed
+
+commit 58eb8ef6962177e438f7c49ca108da0c6be8c7bd
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Sat Mar 23 12:34:03 2013 -0400
+
+    reated functionality to choose if text wrapping should be enabled
+
+commit d16b6979ff3b704a7be6fc3dd8a21c493c3286d9
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Sat Mar 23 12:00:43 2013 -0400
+
+    Added functionality to edit the user's desired tab length
+
+commit 8e422575a17ac7487a096ea071b071a42212ee3b
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Sat Mar 23 10:51:08 2013 -0400
+
+    enamed package names to lowercase so Eclipse would stop yelling at me lolz
+
+commit af64bffb375310e053039ad0fe445bef197cbd27
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Sat Mar 23 09:28:42 2013 -0400
+
+    Worked on the Tag and Tag composite structures as well as their
+    interface.
+
+commit dbef7c6d8769324cd6b78a41b71b1a392bba20be
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Fri Mar 22 20:46:14 2013 -0400
+
+    added functionality to prompt the user to save on quit
+
+commit a013571aa13777cf6913f4e4ee2ff0a193acb80a
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Fri Mar 22 18:15:41 2013 -0400
+
+    Completed the skeleton for the menu bar and added it to the main window.
+
+commit 09960fdd3557ec80f0ef71d0be844bf9dab7ddb9
+Author: SildricStormwind <emajchr1@yahoo.com>
+Date:   Fri Mar 22 16:59:05 2013 -0400
+
+    Commiting Checker and Tag Packages for the first time
+
+commit 9d42f9a6aae2ae663b4ad93e0e6d711fc2cc37f8
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Fri Mar 22 16:20:54 2013 -0400
+
+    Created TextTabWindow & added test tabs.
+
+commit a24cb2fe086f2358c3797ceab294d3403538fcc3
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Fri Mar 22 16:01:59 2013 -0400
+
+     Please enter theea of red from Dan's last commit
+
+commit 1086c4792d881ece76bac85a46689e3c520f02a2
+Merge: 193595c e736f88
+Author: DANIEL HERNANDEZ <dfh4836@nitron.se.rit.edu>
+Date:   Fri Mar 22 15:55:44 2013 -0400
+
+    Merge branch 'master' of https://github.com/jmp3833/362_Unit_2
+
+commit 193595c0b24ee7c923a2ade391811790e5d5274f
+Author: DANIEL HERNANDEZ <dfh4836@nitron.se.rit.edu>
+Date:   Fri Mar 22 15:55:17 2013 -0400
+
+    New Package for Command
+
+commit e736f8876f502a9020c1d3b673b2fc933998f997
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Fri Mar 22 15:45:23 2013 -0400
+
+    Bogart test commit 4
+
+commit 955b1df43709b00268a0f0742ad9c995bf1441c5
+Merge: 6832457 0256f83
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Fri Mar 22 15:44:27 2013 -0400
+
+    Merge branch 'master' of https://github.com/jmp3833/362_Unit_2.git
+
+commit 6832457d77cecf7d40eda2456318a0cdd8aecdf6
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Fri Mar 22 15:43:54 2013 -0400
+
+    Bogart commit test 3
+
+commit 418ad023a38eb3925e76da794af8db5a75078a2c
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Fri Mar 22 15:42:42 2013 -0400
+
+    Bogart commit test 2
+
+commit f7a6bed02ea1c4ab41f9909a5c3035c39eb91ed3
+Author: Bogart <hakimakitak@gmail.com>
+Date:   Fri Mar 22 15:39:42 2013 -0400
+
+    Bogart test commit 1
+
+commit 0256f836d5266297edfeb067dc79b98916b73f10
+Author: DANIEL HERNANDEZ <dfh4836@nitron.se.rit.edu>
+Date:   Fri Mar 22 15:34:15 2013 -0400
+
+    Added all java files needed for Command section of the project
+
+commit bd0dd0967b7ec254e21c967bc04053c5b3da6ad1
+Author: DANIEL HERNANDEZ <dfh4836@nitron.se.rit.edu>
+Date:   Fri Mar 22 14:56:34 2013 -0400
+
+    Added Name
+
+commit ee744d59144ab4613b5fad91280ab9edaed2ba47
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Fri Mar 22 14:49:43 2013 -0400
+
+    Created the main GUI window for the text editor.
+
+commit 001edceea03b2058394ebd0de70df3913d318859
+Author: jmp3833 <jmp3833@rit.edu>
+Date:   Wed Mar 13 18:21:40 2013 -0400
+
+    Initial commit check. Added a line to the readme. - jmp3833
+
+commit 8ae5ab128688334e96013978708855aa581c8f25
+Author: Justin Peterson <jmp3833@rit.edu>
+Date:   Tue Mar 12 06:42:00 2013 -0700
+
+    Initial commit
