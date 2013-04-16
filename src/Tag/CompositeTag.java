@@ -4,97 +4,88 @@
 package Tag;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
- * This is the composite tag, it stores several tags so that if
- * the user wanted to have a construct that printed several tags
- * at once the program would build a composite to do so.
+ * This is the composite tag, it will represent the entire text 
+ * document with a composite for the sake of collapsed windows 
+ * in the collapsed view.
+ * 
  * @author Eric Majchrzak
  *
  */
-public class CompositeTag implements TagInterface {
+public class CompositeTag{
 	
-	ArrayList<TagInterface> tags;
-	String name;
+	ArrayList<CompositeTag> tags;
+	String startTag;
+	ArrayList<String> normalText;
+	String endTag;
+	int i; 							//Counter for the composite, helps the previous composite pick up where this one left off
 	
 	/**
-	 * Constructor for the composite tag, just initializes the
-	 * ArrayList.
+	 * Constructor for the composite tag, this is where almost 
+	 * all of the processing work is done. It takes in the text 
+	 * (represented by a String) and will go through and find 
+	 * every instance of a tag and collapse it.
 	 */
-	public CompositeTag(String myName){
-		tags = new ArrayList<TagInterface>();
-		name = myName;
-	}
-
-	/* (non-Javadoc)
-	 * @see Tag.TagInterface#print()
-	 */
-	@Override
-	public String print() {
-		String temp = "";
-		for(int i = 0;i < tags.size(); i++){
-			temp = temp + tags.get(i).getOpening();
+	public CompositeTag(String text){
+		char[] textArray = text.toCharArray();
+		CompositeTag tempTag;
+		i = 1;
+		String temp = "<";
+		
+		//loop through first tag
+		while(textArray[i] != '>'){
+			temp = temp + textArray[i];
+			i++;
 		}
-		for(int i = 0;i < tags.size(); i++){
-			temp = temp + tags.get(i).getClosing();
+		
+		startTag = temp + '>';
+		temp = "";
+		i++;
+		
+		while(true){
+			//How to treat regular text
+			while(textArray[i] != '<'){
+				temp += textArray[i];
+				i++;
+			}
+			
+			normalText.add(temp);
+			temp = "";
+			
+			//End of this composite
+			if(textArray[i+1] == '/'){
+				while(textArray[i] != '>'){
+					temp += textArray[i];
+					i++;
+				}
+				endTag = temp + '>';
+				i++;
+				return;
+			//Start of a new composite
+			} else {
+				char[] toSend = Arrays.copyOfRange(textArray,i,textArray.length);
+				tempTag = new CompositeTag(new String(toSend));
+				i = i + tempTag.getCount();
+				tags.add(tempTag);
+			}
 		}
-		return temp;
 	}
 
-	/* (non-Javadoc)
-	 * @see Tag.TagInterface#compare(java.lang.String)
+	/**
+	 * GetCount used in the construction of the composite
+	 * @return
 	 */
-	@Override
-	public boolean compare(String toCompare) {
-		return false;
+	private int getCount() {
+		return i;
 	}
 	
 	/**
-	 * This function adds a tag to the composite
-	 * @param tagToAdd
+	 * This is the iterator that will be used to print sections of the tag
+	 * @return
 	 */
-	public void addTag(TagInterface tagToAdd){
-		tags.add(tagToAdd);
+	public String printNext(){
+		return "";
 	}
-
-	/**
-	 * Prints nothing in the case of the composite because all
-	 * closing tags are printed when opening is called.
-	 * @return null
-	 */
-	@Override
-	public String getClosing() {
-		return null;
-	}
-
-	/**
-	 * Goes through and prints all of the tags openings and closings
-	 * because it is in a composite.
-	 */
-	@Override
-	public String getOpening() {
-		return(this.print());
-	}
-
-	/**
-	 * This is the get name function. It will return the name of the tag
-	 * for the menu bar to show.
-	 */
-	@Override
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public boolean isType(String string) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean checkEnd(String temp) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

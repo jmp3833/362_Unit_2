@@ -38,7 +38,7 @@ public class FieldTag implements TagInterface {
 		String temp = "<" + tag;
 		
 		for(int i = 0;i<fields.size();i++){
-			temp = temp + " " + fields.get(i) + "=\"\"";
+			temp = temp + " " + fields.get(i) + "=\"" + "\"";
 		}
 		return temp + "><" + endTag + ">\n";
 	}
@@ -51,11 +51,9 @@ public class FieldTag implements TagInterface {
 		
 		StringTokenizer st = new StringTokenizer(toCompare);
 		
-		String help = st.nextToken();
 		
 		//Check first part to see if it is the right tag
-		if(!help.startsWith("<" + tag)){
-			System.out.println("test: " + "<" + tag + " Failed: " + help);
+		if(!st.nextToken().startsWith("<" + tag)){
 			return false;
 		}
 		
@@ -111,5 +109,4 @@ public class FieldTag implements TagInterface {
 	public boolean checkEnd(String temp) {
 		return temp.equals(endTag);
 	}
-
 }
