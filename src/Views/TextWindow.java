@@ -8,10 +8,15 @@
 
 package Views;
 
+import Command.Command;
+import Command.CommandInvoker;
+import Command.SaveTextCommand;
 import Observers.EditObserver;
 import Tag.TagCollection;
 import Views.TextTabWindow;
 import java.awt.BorderLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -21,11 +26,17 @@ public class TextWindow extends JTextArea{
 	
 	private static final long serialVersionUID = 1L;
 
+	CommandInvoker invoker;
+	Command saveTextCommand;
+	
 	/**
 	 * Constructs an individual window to add to the TextTabWindow. 
 	 * @param tabWindow - the main TextTabWindow of the editor. 
 	 */
 	public TextWindow(String windowName, TextTabWindow tabWindow, TagCollection tabs, EditObserver e){
+		invoker = new CommandInvoker();
+		saveTextCommand = new SaveTextCommand(e);
+		
 		setLayout(new BorderLayout(5,10));
 		new JTextArea();
 		
@@ -40,6 +51,39 @@ public class TextWindow extends JTextArea{
 		
 		//opens the right-click menu
 		addMouseListener(new RightClickMenu(this, tabs, e));
+		addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				invoker.invokeCommand(saveTextCommand);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+	
+		});
 		
 		//places text area inside a scrolling pane
 		JScrollPane scrollPane = new JScrollPane(this);
@@ -48,6 +92,7 @@ public class TextWindow extends JTextArea{
 		
 		tabWindow.addTab(windowName, scrollPane);
 		setVisible(true);
+		
+		
 	}
-
 }
