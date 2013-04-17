@@ -76,4 +76,22 @@ public class InsertObserver implements Receiver{
 		insertString = newString;
 	}
 	
+	/**
+	 * Inserts an href tag into the HTML editor
+	 * @param URL the url of the link
+	 * @param linkText the actual text of the link.
+	 */
+	public void insertHrefTag(){
+		
+		JTextArea tw = fr.getSelectedTextArea(mainWindow);
+		String URL = JOptionPane.showInputDialog("Enter desired URL:");
+		String linkText = JOptionPane.showInputDialog
+				("Enter desired Link Text:");
+		
+		int pos = tw.getCaretPosition();
+		tw.insert(tags.printLinkTag(URL, linkText),pos);
+		
+		
+	}
+	
 }

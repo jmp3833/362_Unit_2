@@ -53,6 +53,7 @@ public class MenuBar {
   Command undoCommand;
   Command redoCommand;
   Command saveTextCommand;
+  Command insertHrefCommand;
   CommandInvoker invoker; 
   
   String tagString = "";
@@ -100,6 +101,7 @@ public class MenuBar {
  	  //Insert commands 
  	  this.InsertTableCommand = new InsertTableCommand(i);
  	  this.InsertTagCommand = new InsertTagCommand(i);
+ 	  this.insertHrefCommand = new InsertHrefTagCommand(i);
  	  
  	  //Checker command(s)
  	  this.checkCommand = new CheckCommand(c);
@@ -120,7 +122,7 @@ public class MenuBar {
 	  JMenu file, settings, check, insert, edit;
 	  //Items that can be selected through menus
 	  JMenuItem save, quit, open, tabSize, textWrapping, newFile,
-	  checkPrompt, insertTagTable;
+	  checkPrompt, insertTagTable, insertHref;
 	  
 	  //Creates each menu of the menubar
 	  menuBar = new JMenuBar();
@@ -137,7 +139,6 @@ public class MenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 			  
@@ -147,8 +148,7 @@ public class MenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				
+
 			}
 			  
 		  });
@@ -157,8 +157,7 @@ public class MenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				
+
 			}
 			  
 		  });
@@ -275,6 +274,18 @@ public class MenuBar {
 		  
 	  });
 	  
+	  insertHref = new JMenuItem("Href Tag");
+	  insertHref.addActionListener(new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			invoker.invokeCommand(insertHrefCommand);
+			invoker.invokeCommand(saveTextCommand);
+		}
+		  
+	  });
+	  
+	  
 	   
 	  tabSize = new JMenuItem("Edit tab length");
 	  tabSize.addActionListener(new ActionListener(){
@@ -337,6 +348,7 @@ public class MenuBar {
 	  
 	  //Populates the "Insert" sub menu 
 	  insert.add(insertTagTable);
+	  insert.add(insertHref);
 	  
 	  //Populates the edit sub menu
 	  edit.add(undo);

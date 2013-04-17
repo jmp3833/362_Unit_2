@@ -169,6 +169,6 @@ public class TagCollection {
 	 * @return
 	 */
 	public String printLinkTag(String href,String text){
-		return "<a href=\"" + href + ">" + text + "</a>";
+		return "<a href=\"" + href + "\">" + text + "</a>";
 	}
 }
