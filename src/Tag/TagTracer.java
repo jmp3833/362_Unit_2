@@ -69,7 +69,6 @@ public class TagTracer {
 					inTag = true;
 				}
 			}
-		
 		return foundTags;
 	}
 }

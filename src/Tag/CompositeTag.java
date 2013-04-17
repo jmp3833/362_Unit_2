@@ -28,8 +28,42 @@ public class CompositeTag{
 	 * (represented by a String) and will go through and find 
 	 * every instance of a tag and collapse it.
 	 */
+	public CompositeTag(String text,int flake){
+		char[] textArray = text.toCharArray();
+		tags = new ArrayList<CompositeTag>();
+		normalText = new ArrayList<String>();
+		startTag = "";
+		endTag = "";
+		CompositeTag tempTag;
+		i = 0;
+		String temp = "";
+		
+		while(i < textArray.length){
+			//How to treat regular text
+			while(textArray[i] != '<'){
+				temp += textArray[i];
+				i++;
+				if(i == text.length()){
+					normalText.add(temp);
+					return;
+				}
+			}
+			
+			normalText.add(temp);
+			temp = "";
+			
+			//Start of a new composite
+			char[] toSend = Arrays.copyOfRange(textArray,i,textArray.length);
+			tempTag = new CompositeTag(new String(toSend));
+			i = i + tempTag.getCount();
+			tags.add(tempTag);
+		}
+	}
+	
 	public CompositeTag(String text){
 		char[] textArray = text.toCharArray();
+		tags = new ArrayList<CompositeTag>();
+		normalText = new ArrayList<String>();
 		CompositeTag tempTag;
 		i = 1;
 		String temp = "<";
@@ -85,7 +119,19 @@ public class CompositeTag{
 	 * This is the iterator that will be used to print sections of the tag
 	 * @return
 	 */
-	public String printNext(){
-		return "";
+	public ArrayList<String> getComposite(){
+		ArrayList<String> temp = new ArrayList<String>();
+		
+		temp.add(startTag);
+		temp.add(normalText.get(0));
+		
+		for(int i=0; i < tags.size();i++){
+			temp.addAll(tags.get(i).getComposite());
+			temp.add(normalText.get(i+1));	
+		}
+		
+		temp.add(endTag);
+		
+		return temp;
 	}
 }
