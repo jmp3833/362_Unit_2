@@ -18,19 +18,19 @@ import javax.swing.WindowConstants;
 
 public class ImagePanel extends JFrame{
 	
-	public ImagePanel(final ArrayList<String> filenames) {              
+	public ImagePanel(String filename) {              
 		  
 		//sort by occurance/place    
         BufferedImage image = null;
         try
         {
-        	for (String filename : filenames) { 
-        		image = ImageIO.read(new File(filename)); 
-        		ImageIcon ii = new ImageIcon(image);
-		        JLabel l = new JLabel();
-		        l.setIcon(ii);
-		        getContentPane().add(l);
-        	}
+        	
+			image = ImageIO.read(new File(filename)); 
+			ImageIcon ii = new ImageIcon(image);
+	        JLabel l = new JLabel();
+	        l.setIcon(ii);
+	        getContentPane().add(l);
+        	
         } catch (Exception e){}
         pack();
         setVisible(true);

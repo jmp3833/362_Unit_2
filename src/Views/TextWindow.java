@@ -18,9 +18,14 @@ import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
+
+import com.sun.xml.internal.messaging.saaj.packaging.mime.util.OutputUtil;
 
 public class TextWindow extends JTextArea{
 	
@@ -86,7 +91,27 @@ public class TextWindow extends JTextArea{
 		});
 		
 		//places text area inside a scrolling pane
-		JScrollPane scrollPane = new JScrollPane(this);
+		JScrollPane scrollPane = new JScrollPane();
+		//scrollPane.getViewport().add(this);
+		
+		JPanel p = new JPanel();
+		p.setLayout(new BorderLayout(3,3));
+		OutlinePanel outlinepanel = new OutlinePanel();
+		p.add(this, BorderLayout.CENTER);
+		
+		JPanel buttonPanel = new JPanel();
+		JButton images = new JButton("Images");
+		//images.addActionListener(ImagesActionListener);
+		JButton links = new JButton("Links");
+		
+		buttonPanel.add(images);
+		buttonPanel.add(links);
+		
+		p.add(buttonPanel, BorderLayout.NORTH);
+		
+		p.add(outlinepanel, BorderLayout.SOUTH);
+		
+		scrollPane.getViewport().add(p);
 		scrollPane.setBounds(10,60,780,500);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		

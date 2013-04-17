@@ -42,10 +42,10 @@ public class CollapsiblePanel extends JPanel{
 		
 		eText.setText(text);
 		
-		add(b, BorderLayout.EAST);
+		add(b, BorderLayout.WEST);
 		add(cText, BorderLayout.CENTER);
-		ePanel.add(eText, BorderLayout.WEST);
-		add(ePanel, BorderLayout.WEST);
+		ePanel.add(eText, BorderLayout.EAST);
+		add(ePanel, BorderLayout.EAST);
 		
 	}
 	
