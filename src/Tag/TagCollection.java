@@ -161,4 +161,14 @@ public class TagCollection {
 	public TagInterface getBufferedTag(){
 		return bufferTag;
 	}
+	
+	/**
+	 * This is the function used for printing a link tag
+	 * @param href
+	 * @param text
+	 * @return
+	 */
+	public String printLinkTag(String href,String text){
+		return "<a href=\"" + href + ">" + text + "</a>";
+	}
 }
