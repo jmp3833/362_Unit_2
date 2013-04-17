@@ -130,6 +130,44 @@ public class MenuBar {
 	  settings = new JMenu("Settings");
 	  check = new JMenu("Check");
 	  
+	  //******Test********************************************
+	  JMenu test = new JMenu("Test It Up ERICCC");
+	  JMenuItem TestButton1 = new JMenuItem("Test1");
+	  TestButton1.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			  
+		  });
+	  JMenuItem TestButton2 = new JMenuItem("Test2");
+	  TestButton2.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			  
+		  });
+	  JMenuItem TestButton3 = new JMenuItem("Test3");
+	  TestButton3.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			  
+		  });
+	  test.add(TestButton1);
+	  test.add(TestButton2);
+	  test.add(TestButton3); 
+	  menuBar.add(test);
+	  
+	  //******end test*******************************************
 	  
 	  undo.setEnabled(false);
 	  undo.addActionListener(new ActionListener(){
