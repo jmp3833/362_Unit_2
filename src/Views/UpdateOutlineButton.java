@@ -5,18 +5,19 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-public class ShowImageButton extends JButton {
-
-	String filename;
-	public ShowImageButton(String source){
-		setText("Show");
-		filename = source;
+public class UpdateOutlineButton extends JButton{
+	
+	OutlinePanel op;
+	
+	public UpdateOutlineButton(OutlinePanel opIn){
+		setText("Refresh Outline View");
+		op = opIn;
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-		
-		new ImagePanel(filename);
+				op.update();
 			}
 		});
+			
 	}
+
 }

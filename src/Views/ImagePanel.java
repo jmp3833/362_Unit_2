@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
@@ -29,9 +30,14 @@ public class ImagePanel extends JFrame{
 			ImageIcon ii = new ImageIcon(image);
 	        JLabel l = new JLabel();
 	        l.setIcon(ii);
-	        getContentPane().add(l);
+	        add(l);
+	        
         	
-        } catch (Exception e){}
+        } catch (Exception e){
+        	JTextPane tp = new JTextPane();
+        	tp.setText("Sorry, no image found.");
+        	add(tp);
+        }
         pack();
         setVisible(true);
       }

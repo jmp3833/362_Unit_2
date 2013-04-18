@@ -91,7 +91,7 @@ public class TextWindow extends JTextArea{
 		});
 		
 		//places text area inside a scrolling pane
-		JScrollPane scrollPane = new JScrollPane();
+		TextScrollPane scrollPane = new TextScrollPane(this);
 		//scrollPane.getViewport().add(this);
 		
 		JPanel p = new JPanel();
@@ -100,12 +100,15 @@ public class TextWindow extends JTextArea{
 		p.add(this, BorderLayout.CENTER);
 		
 		JPanel buttonPanel = new JPanel();
-		JButton images = new JButton("Images");
-		//images.addActionListener(ImagesActionListener);
-		JButton links = new JButton("Links");
+		SourcesButton images = new SourcesButton(this);
+		
+		LinksButton links = new LinksButton(this);
+		
+		UpdateOutlineButton uob = new UpdateOutlineButton(outlinepanel);
 		
 		buttonPanel.add(images);
 		buttonPanel.add(links);
+		buttonPanel.add(uob);
 		
 		p.add(buttonPanel, BorderLayout.NORTH);
 		
@@ -117,6 +120,9 @@ public class TextWindow extends JTextArea{
 		
 		tabWindow.addTab(windowName, scrollPane);
 		setVisible(true);
+		
+		
+		
 		
 		
 	}
