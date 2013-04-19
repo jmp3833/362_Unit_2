@@ -1,3 +1,8 @@
+/**
+ * @author: Alex Bogart
+ * Display an image from a filename in a popup window.
+ */
+
 package Views;
 
 import java.awt.BorderLayout;
@@ -19,6 +24,10 @@ import javax.swing.WindowConstants;
 
 public class ImagePanel extends JFrame{
 	
+	/**
+	 * construct a popup window with the image displayed
+	 * @param filename
+	 */
 	public ImagePanel(String filename) {              
 		  
 		//sort by occurance/place    

@@ -1,3 +1,8 @@
+/**
+ * @author Alex Bogart
+ * Create an ImagePanel
+ */
+
 package Views;
 
 import java.awt.event.ActionEvent;

@@ -96,7 +96,7 @@ public class TextWindow extends JTextArea{
 		
 		JPanel p = new JPanel();
 		p.setLayout(new BorderLayout(3,3));
-		OutlinePanel outlinepanel = new OutlinePanel();
+		OutlinePanel outlinepanel = new OutlinePanel(this);
 		p.add(this, BorderLayout.CENTER);
 		
 		JPanel buttonPanel = new JPanel();

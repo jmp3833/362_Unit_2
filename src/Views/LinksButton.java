@@ -1,3 +1,8 @@
+/**
+ * @author: Alex Bogart
+ * Displays the links in the text along with the frequency of their appearance.
+ */
+
 package Views;
 
 import java.awt.GridLayout;
@@ -20,9 +25,13 @@ public class LinksButton extends JButton {
 	LinkGrabber lg;
 	JTextArea ta;
 	
-	public LinksButton(JTextArea jta) {
+	/**
+	 * construct a popup window with the list of link tags and their occurances
+	 * @param the corresponding textWindow
+	 */
+	public LinksButton(JTextArea taIn) {
 		lg = new LinkGrabber();
-		ta = jta;
+		ta = taIn;
 		setText("Links");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -125,10 +125,12 @@ public class CompositeTag{
 		temp.add(startTag);
 		temp.add(normalText.get(0));
 		
+		try{
 		for(int i=0; i < tags.size();i++){
 			temp.addAll(tags.get(i).getComposite());
 			temp.add(normalText.get(i+1));	
 		}
+		} catch (Exception e) {}
 		
 		temp.add(endTag);
 		

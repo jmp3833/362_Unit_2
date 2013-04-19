@@ -1,3 +1,9 @@
+/**
+ * @author Alex Bogart
+ * Manage all the elements contained within the viewable section of the tab.
+ */
+
+
 package Views;
 
 import java.awt.Dimension;

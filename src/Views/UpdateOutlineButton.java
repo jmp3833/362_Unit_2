@@ -1,3 +1,8 @@
+/**
+ * @author Alex Bogart
+ * Refreshes and re-populates the OutlinePanel from the TextWindow
+ */
+
 package Views;
 
 import java.awt.event.ActionEvent;

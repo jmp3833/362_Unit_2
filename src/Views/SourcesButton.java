@@ -1,3 +1,9 @@
+/**
+ * @author Alex Bogart
+ * Displays a list of image tags (sources and alts) in a popup window.
+ */
+
+
 package Views;
 
 import java.awt.BorderLayout;
